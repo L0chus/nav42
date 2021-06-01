@@ -3,6 +3,7 @@ package janlochba.views;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
@@ -26,8 +27,9 @@ public class addIssueView extends Div {
     private TextField id = new TextField("id"); //soll automatisch vergeben werden
     private TextField name = new TextField("Issue name");
     private TextField description = new TextField("Description");
-    private TextField issueTyp = new TextField("Issue Typ");
-    //  private ComboBox<String> issueTyp; // nachgucken wie man das macht
+    //private TextField issueTyp = new TextField("Issue Typ");
+    private ComboBox<String> issueTyp = new ComboBox<>();
+
     private NumberField minValue = new NumberField("min Value");
     private NumberField maxValue = new NumberField("max Value");
 
@@ -43,7 +45,11 @@ public class addIssueView extends Div {
     public addIssueView(ManageIssueControl issueControl) {
         addClassName("add-Issue-view");
 
+        issueTyp.setItems("Architecture and Code Structure","Analyzability & Evaluability","Technical Infrastructure","Processes and Organization");
+        issueTyp.setPlaceholder("please select");
+
         add(createTitle());
+        add(issueTyp);
         add(createFormLayout());
         add(createButtonLayout());
 
