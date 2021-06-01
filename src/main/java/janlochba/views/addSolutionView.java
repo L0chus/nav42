@@ -2,9 +2,11 @@ package janlochba.views;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
@@ -40,6 +42,9 @@ public class addSolutionView extends Div {
         addClassName("add-Solution-view");
         add(createTitle());
         add(createFormLayout());
+        add(createButtonLayout());
+        add(addSolution);
+        add(cancel);
 
     }
 
@@ -56,6 +61,15 @@ public class addSolutionView extends Div {
     }
     private void clearForm() {
         binder.setBean(new SolutionDTOImpl());
+    }
+
+    private Component createButtonLayout() {
+        HorizontalLayout buttonLayout = new HorizontalLayout();
+        buttonLayout.addClassName("button-layout");
+        addSolution.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        buttonLayout.add(addSolution);
+        buttonLayout.add(cancel);
+        return buttonLayout;
     }
 
 

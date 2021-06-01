@@ -1,6 +1,7 @@
 package janlochba.views;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -27,9 +28,7 @@ public class addIssueView extends Div {
     private TextField id = new TextField("id"); //soll automatisch vergeben werden
     private TextField name = new TextField("Issue name");
     private TextField description = new TextField("Description");
-    //private TextField issueTyp = new TextField("Issue Typ");
     private ComboBox<String> issueTyp = new ComboBox<>();
-
     private NumberField minValue = new NumberField("min Value");
     private NumberField maxValue = new NumberField("max Value");
 
@@ -52,6 +51,9 @@ public class addIssueView extends Div {
         add(issueTyp);
         add(createFormLayout());
         add(createButtonLayout());
+        addIssue.addClickListener(e -> {
+            UI.getCurrent().navigate("add-Issue");
+        });
 
         //binder.bindInstanceFields(this);
         //clearForm();

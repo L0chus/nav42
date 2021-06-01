@@ -1,10 +1,13 @@
 package janlochba.views;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -24,7 +27,12 @@ public class ImprovementBacklogView extends Div {
         addClassName("improvement-backlog-view");
         add(createTitle());
         add(this.createGridTable());
-        add(this.addSolution);
+        add(createButtonLayout());
+        add(addSolution);
+        addSolution.addClickListener(event -> {
+            UI.getCurrent().navigate("add Solution");
+        });
+
     }
 
     private Component createGridTable(){
@@ -44,5 +52,13 @@ public class ImprovementBacklogView extends Div {
 
     private Component createTitle() {
         return new H3("Improvement Backlog");
+    }
+
+    private Component createButtonLayout() {
+        HorizontalLayout buttonLayout = new HorizontalLayout();
+        buttonLayout.addClassName("button-layout");
+        addSolution.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        buttonLayout.add(addSolution);
+        return buttonLayout;
     }
 }
