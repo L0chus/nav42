@@ -20,9 +20,10 @@ public class HomeView extends HorizontalLayout {
 
         toAddIssue.addClickListener(e -> {
             // navigation mit dem Button geht, der Fehler liegt also in addIssueView ...
-            UI.getCurrent().navigate("addIssue");
+            UI.getCurrent().navigate("add-Issue");
 
         });
     }
+
 
 }

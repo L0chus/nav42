@@ -10,20 +10,20 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import janlochba.control.ManageIssueControl;
 import janlochba.dto.IssueDTO;
-import janlochba.util.Globals;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Route(value = Globals.Pages.SHOW_ISSUE, layout = MainView.class)
+@Route(value = "Issue List", layout = MainView.class)
 @PageTitle("Issue List")
 public class IssueListView extends Div {
 
-    private final List<IssueDTO> issueList;
+    private final List<IssueDTO> issueList = new ArrayList<>();
 
     public IssueListView( ManageIssueControl issueControl ) {
         addClassName("issue-list-view");
 
-        issueList = issueControl.readAllIssues();
+        //issueList = issueControl.readAllIssues();
 
         add(this.createTitle());
 

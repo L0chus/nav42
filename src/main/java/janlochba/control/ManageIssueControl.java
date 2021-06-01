@@ -25,8 +25,8 @@ public class ManageIssueControl {
         this.repository.save(issueEntity);
     }
 
-   public List<IssueDTO> readAllIssues(){
+  /* public List<IssueDTO> readAllIssues(){
         return repository.findIssueByIdNotNull();
-    }
+    }*/
 
 }

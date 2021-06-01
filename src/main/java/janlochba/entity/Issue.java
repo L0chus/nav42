@@ -14,7 +14,7 @@ public class Issue {
     private String typ;
 
     @Id
-    @GeneratedValue
+    //@GeneratedValue
     @Column(name = "id")
     public String getId() {
         return id;

@@ -16,10 +16,10 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import janlochba.control.ManageIssueControl;
 import janlochba.dto.impl.IssueDTOImpl;
-import janlochba.util.Globals;
 
 
-@Route(value = Globals.Pages.ENTER_ISSUE, layout = MainView.class)
+
+@Route(value = "add-Issue", layout = MainView.class)
 @PageTitle("add-Issue")
 public class addIssueView extends Div {
 
@@ -47,11 +47,10 @@ public class addIssueView extends Div {
         clearForm();
 
         cancel.addClickListener(e -> clearForm());
+
         addIssue.addClickListener(e -> {
-            //IssueDTO issueDTO = (IssueDTO) UI.getCurrent().getSession().getAttribute();
             issueControl.createIssue(binder.getBean());
             Notification.show("successfully added to Issue List");
-            UI.getCurrent().navigate("IssueList"); // nach dem anlegen wird man zur IssueListView geleitet
         });
 
 
@@ -66,6 +65,7 @@ public class addIssueView extends Div {
         formLayout.add(id, name,issueTyp, description,  minValue,  maxValue);
         return formLayout;
     }
+
     private void clearForm() {
         binder.setBean(new IssueDTOImpl());
     }

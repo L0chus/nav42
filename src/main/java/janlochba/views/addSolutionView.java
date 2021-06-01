@@ -10,10 +10,11 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 import janlochba.dto.impl.SolutionDTOImpl;
 
+
 @Route(value = "add Solution", layout = MainView.class)
 
 public class addSolutionView {
-    //private TextField id = new TextField("id"); soll automatisch vergeben werden
+    private TextField id = new TextField("id"); // soll automatisch vergeben werden
     private TextField name = new TextField("Solution name");
     private TextField description = new TextField("Description");
     private NumberField minCost = new NumberField("min Cost");
@@ -34,7 +35,7 @@ public class addSolutionView {
 
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
-        formLayout.add(name, description, minCost,  maxCost);
+        formLayout.add( id, name, description, minCost, maxCost);
         return formLayout;
     }
     private void clearForm() {
