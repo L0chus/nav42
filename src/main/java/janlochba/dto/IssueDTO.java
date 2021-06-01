@@ -14,4 +14,5 @@ public interface IssueDTO {
 
     public String getTyp();
 
+
 }

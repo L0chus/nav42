@@ -1,12 +1,10 @@
 package janlochba.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table( name = "Issue", schema = "nav42")
 public class Issue {
     private String id;
     private String name;

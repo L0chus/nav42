@@ -10,7 +10,7 @@ import java.util.Optional;
 
 
 public interface IssueRepository extends JpaRepository<Issue,String> {
-    //@Autowired
-    //Optional<IssueDTO> findByIdNotNull(); // Testdaten in IssueList eingeben
+   //@Autowired
+    //Optional<IssueDTO> findById(); // Testdaten in IssueList eingeben
     //List<IssueDTO> findIssueByIdNotNull();
 }
