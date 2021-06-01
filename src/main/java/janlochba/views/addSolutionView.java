@@ -3,31 +3,47 @@ package janlochba.views;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import janlochba.dto.impl.SolutionDTOImpl;
 
 
 @Route(value = "add Solution", layout = MainView.class)
+@PageTitle("add-Solution")
+public class addSolutionView extends Div {
 
-public class addSolutionView {
+    // Input Felder
+
     private TextField id = new TextField("id"); // soll automatisch vergeben werden
     private TextField name = new TextField("Solution name");
     private TextField description = new TextField("Description");
     private NumberField minCost = new NumberField("min Cost");
     private NumberField maxCost = new NumberField("max Cost");
 
+    // Buttons
+
     private Button addSolution = new Button("add to Issue List");
     private Button cancel = new Button("cancel");
 
+    // Kein Plan wie das heißt
+
     private Binder<SolutionDTOImpl> binder = new Binder(SolutionDTOImpl.class);
 
+    // die View an sich
+
     public addSolutionView() {
+        addClassName("add-Solution-view");
+        add(createTitle());
+        add(createFormLayout());
 
     }
+
+    // Zeugs das in der View benutzt wird
 
     private Component createTitle() {
         return new H3("add Solution");
@@ -41,5 +57,6 @@ public class addSolutionView {
     private void clearForm() {
         binder.setBean(new SolutionDTOImpl());
     }
+
 
 }

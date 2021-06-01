@@ -15,13 +15,30 @@ public class HomeView extends HorizontalLayout {
     public HomeView() {
 
         addClassName("home-view");
+
+        // Buttons Erzeugen
+
         Button toAddIssue = new Button("add new Issue");
+        Button toAddSolution = new Button("add new Solution");
+        Button toAnalysis = new Button("go to Analysis");
+
+        // Buttons einfügen
+
         add(toAddIssue);
+        add(toAddSolution);
+        add(toAnalysis);
+
+        // Buttons eine Funktion geben
 
         toAddIssue.addClickListener(e -> {
             // navigation mit dem Button geht, der Fehler liegt also in addIssueView ...
             UI.getCurrent().navigate("add-Issue");
-
+        });
+        toAddSolution.addClickListener(event -> {
+           UI.getCurrent().navigate("add Solution");
+        });
+        toAnalysis.addClickListener(event -> {
+            UI.getCurrent().navigate(""); //muss nachgetragen werden
         });
     }
 
