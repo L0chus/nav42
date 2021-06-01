@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table( name = "Issue", schema = "nav42")
+@Table( name = "issue", schema = "nav42")
 public class Issue {
     private String id;
     private String name;
@@ -14,6 +14,7 @@ public class Issue {
     private String typ;
 
     @Id
+    @GeneratedValue
     @Column(name = "id")
     public String getId() {
         return id;
@@ -83,6 +84,6 @@ public class Issue {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, minValue, maxValue, typ);
+        return Objects.hash(id, typ, name, description, minValue, maxValue);
     }
 }

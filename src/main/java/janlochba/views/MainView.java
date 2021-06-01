@@ -1,31 +1,26 @@
 package janlochba.views;
 
-import java.util.Optional;
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.router.PageTitle;
-import janlochba.views.HomeView;
-import janlochba.views.IssueListView;
-import janlochba.views.ImprovementBacklogView;
 
-/**
- * The main view is a top-level placeholder for other views.
- */
+import java.util.Optional;
+
+
 @PWA(name = "nav42", shortName = "nav42", enableInstallPrompt = false)
 @Theme(themeFolder = "nav42")
 public class MainView extends AppLayout {

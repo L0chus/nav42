@@ -11,17 +11,22 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class ManageIssueControl { /*
+public class ManageIssueControl {
 
     @Autowired
     private IssueRepository repository;
 
-    public void createIssue(IssueDTO issueDTO){
-        Issue issueEntity = IssueFactory.createIssue(issueDTO);
+    public void createIssue( IssueDTO issueDTO ){
 
+        //Erzeuge einer neuen Issue-Entity über die Factory
+        Issue issueEntity = IssueFactory.createIssue( issueDTO );
+
+        // Abspeicherung des Entity in die DB
         this.repository.save(issueEntity);
     }
 
-   public List<IssueDTO> readAllIssues(){ return repository.findIssuesByIdIsNotNull();}
-*/
+   public List<IssueDTO> readAllIssues(){
+        return repository.findIssueByIdNotNull();
+    }
+
 }
