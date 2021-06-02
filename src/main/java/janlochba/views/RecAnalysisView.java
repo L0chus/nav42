@@ -30,7 +30,9 @@ public class RecAnalysisView extends Div {
         box2.setItems("known error","code quality","data source","data","generally","requirements","HW","infrastructure","API","UI");
         box2.setPlaceholder("please select");
 
+        add(createTitle());
         add(createVerticalLayout());
+        add(createButtonLayout());
 
     }
 

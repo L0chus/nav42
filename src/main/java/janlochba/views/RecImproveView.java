@@ -37,9 +37,11 @@ public class RecImproveView extends Div {
         box3.setItems("");
         box3.setPlaceholder("please select");
 
+        add(createTitle());
         add(createVerticalLayout());
+        add(createButtonLayout());
 
-        // clicklistener für Button einfügen mit Nachricht ... immer an diese Boy Scout Rule denken
+        // ClickListener für Button einfügen mit Nachricht ... immer an diese Boy Scout Rule denken
 
     }
 
@@ -60,5 +62,6 @@ public class RecImproveView extends Div {
 
         return verticalLayout;
     }
+
 
 }
