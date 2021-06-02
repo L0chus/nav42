@@ -18,6 +18,7 @@ import java.util.List;
 
 @Route(value = "Improvement_Backlog", layout = MainView.class)
 @PageTitle("Improvement Backlog")
+
 public class ImprovementBacklogView extends Div {
 
     private List<SolutionDTO> improvementBacklog = new ArrayList<>();

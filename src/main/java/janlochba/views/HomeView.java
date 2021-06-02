@@ -38,7 +38,7 @@ public class HomeView extends HorizontalLayout {
            UI.getCurrent().navigate("add Solution");
         });
         toAnalysis.addClickListener(event -> {
-            UI.getCurrent().navigate(""); //muss nachgetragen werden
+            UI.getCurrent().navigate("RecAnalysis");
         });
     }
 
