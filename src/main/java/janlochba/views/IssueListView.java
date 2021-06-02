@@ -14,16 +14,16 @@ import janlochba.dto.IssueDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(value = "Issue List", layout = MainView.class)
+@Route(value = "Issue_List", layout = MainView.class)
 @PageTitle("Issue List")
 public class IssueListView extends Div {
 
-    private final List<IssueDTO> issueList = new ArrayList<>();
+    private final List<IssueDTO> issueList;
 
     public IssueListView( ManageIssueControl issueControl ) {
         addClassName("issue-list-view");
 
-        //issueList = issueControl.readAllIssues();
+        issueList = issueControl.readAllIssues();
 
         add(this.createTitle());
 
@@ -41,7 +41,7 @@ public class IssueListView extends Div {
 
         grid.setDataProvider(dataProvider);
 
-        Grid.Column<IssueDTO> idColumn = grid.addColumn(IssueDTO::getID).setHeader("ID");
+        Grid.Column<IssueDTO> idColumn = grid.addColumn(IssueDTO::getId).setHeader("ID");
         Grid.Column<IssueDTO> nameColumn = grid.addColumn(IssueDTO::getName).setHeader("Issue");
         Grid.Column<IssueDTO> descriptionColumn = grid.addColumn(IssueDTO::getDescription).setHeader("Description");
         Grid.Column<IssueDTO> typColumn = grid.addColumn(IssueDTO::getTyp).setHeader("Issue Typ");

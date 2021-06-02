@@ -7,13 +7,13 @@ public class IssueDTOImpl implements IssueDTO {
     private String id;
     private String name;
     private String description;
-    private Long minValue;
-    private Long maxValue;
+    private Double minValue;
+    private Double maxValue;
     private String typ;
 
     //getter
     @Override
-    public String getID() {
+    public String getId() {
         return id;
     }
 
@@ -28,12 +28,12 @@ public class IssueDTOImpl implements IssueDTO {
     }
 
     @Override
-    public Long getMinValue() {
+    public Double getMinValue() {
         return minValue;
     }
 
     @Override
-    public Long getMaxValue() {
+    public Double getMaxValue() {
         return maxValue;
     }
 
@@ -56,11 +56,11 @@ public class IssueDTOImpl implements IssueDTO {
         this.description = description;
     }
 
-    public void setMinValue(Long minValue) {
+    public void setMinValue(Double minValue) {
         this.minValue = minValue;
     }
 
-    public void setMaxValue(Long maxValue) {
+    public void setMaxValue(Double maxValue) {
         this.maxValue = maxValue;
     }
 

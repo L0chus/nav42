@@ -8,7 +8,7 @@ public class IssueFactory {
 
         Issue issue = new Issue();
 
-        issue.setId(issueDTO.getID());
+        issue.setId(issueDTO.getId());
         issue.setName(issueDTO.getName());
         issue.setTyp(issueDTO.getTyp());
         issue.setDescription(issueDTO.getDescription());

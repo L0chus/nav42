@@ -9,8 +9,8 @@ public class Issue {
     private String id;
     private String name;
     private String description;
-    private Long minValue;
-    private Long maxValue;
+    private Double minValue;
+    private Double maxValue;
     private String typ;
 
     @Id
@@ -25,7 +25,7 @@ public class Issue {
     }
 
     @Basic
-    @Column(name = "Name")
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -35,7 +35,7 @@ public class Issue {
     }
 
     @Basic
-    @Column(name = "Description")
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -45,27 +45,27 @@ public class Issue {
     }
 
     @Basic
-    @Column(name = "minValue")
-    public Long getMinValue() {
+    @Column(name = "min_value")
+    public Double getMinValue() {
         return minValue;
     }
 
-    public void setMinValue(Long minValue) {
+    public void setMinValue(Double minValue) {
         this.minValue = minValue;
     }
 
     @Basic
-    @Column(name = "maxValue")
-    public Long getMaxValue() {
+    @Column(name = "max_value")
+    public Double getMaxValue() {
         return maxValue;
     }
 
-    public void setMaxValue(Long maxValue) {
+    public void setMaxValue(Double maxValue) {
         this.maxValue = maxValue;
     }
 
     @Basic
-    @Column(name = "Typ")
+    @Column(name = "typ")
     public String getTyp() {
         return typ;
     }

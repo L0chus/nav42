@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface IssueRepository extends JpaRepository<Issue,String> {
 
+    List<IssueDTO> findIssueByIdNotNull();
+
 }

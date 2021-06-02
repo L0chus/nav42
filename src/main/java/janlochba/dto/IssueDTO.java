@@ -2,15 +2,15 @@ package janlochba.dto;
 
 public interface IssueDTO {
 
-    public String getID();
+    public String getId();
 
     public String getName();
 
     public String getDescription();
 
-    public Long getMinValue();
+    public Double getMinValue();
 
-    public Long getMaxValue();
+    public Double getMaxValue();
 
     public String getTyp();
 
