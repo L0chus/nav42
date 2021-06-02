@@ -21,12 +21,14 @@ public class HomeView extends HorizontalLayout {
         Button toAddIssue = new Button("add new Issue");
         Button toAddSolution = new Button("add new Solution");
         Button toAnalysis = new Button("go to Analysis");
+        Button toImprove = new Button("Improve your Issue");
 
         // Buttons einfügen
 
         add(toAddIssue);
         add(toAddSolution);
         add(toAnalysis);
+        add(toImprove);
 
         // Buttons eine Funktion geben
 
@@ -39,6 +41,9 @@ public class HomeView extends HorizontalLayout {
         });
         toAnalysis.addClickListener(event -> {
             UI.getCurrent().navigate("RecAnalysis");
+        });
+        toImprove.addClickListener(event -> {
+            UI.getCurrent().navigate("RecImprove");
         });
     }
 
