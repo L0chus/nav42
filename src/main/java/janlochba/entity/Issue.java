@@ -1,6 +1,7 @@
 package janlochba.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -14,7 +15,7 @@ public class Issue {
     private String typ;
 
     @Id
-    //@GeneratedValue
+    @NotNull
     @Column(name = "id")
     public String getId() {
         return id;
@@ -25,6 +26,7 @@ public class Issue {
     }
 
     @Basic
+    @NotNull
     @Column(name = "name")
     public String getName() {
         return name;
@@ -35,6 +37,7 @@ public class Issue {
     }
 
     @Basic
+    @NotNull
     @Column(name = "description")
     public String getDescription() {
         return description;
@@ -45,6 +48,7 @@ public class Issue {
     }
 
     @Basic
+    @NotNull
     @Column(name = "min_value")
     public Double getMinValue() {
         return minValue;
@@ -55,6 +59,7 @@ public class Issue {
     }
 
     @Basic
+    @NotNull
     @Column(name = "max_value")
     public Double getMaxValue() {
         return maxValue;
@@ -65,6 +70,7 @@ public class Issue {
     }
 
     @Basic
+    @NotNull
     @Column(name = "typ")
     public String getTyp() {
         return typ;

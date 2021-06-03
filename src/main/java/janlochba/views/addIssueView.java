@@ -5,6 +5,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.crud.Crud;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
@@ -28,7 +29,7 @@ public class addIssueView extends Div {
     private TextField id = new TextField("id"); //soll automatisch vergeben werden
     private TextField name = new TextField("Issue name");
     private TextField description = new TextField("Description");
-    private ComboBox<String> issueTyp = new ComboBox<>();
+    private ComboBox<String> issueTyp = new ComboBox<>("Issue Typ");
     private NumberField minValue = new NumberField("min Value");
     private NumberField maxValue = new NumberField("max Value");
 
@@ -43,20 +44,16 @@ public class addIssueView extends Div {
 
     public addIssueView(ManageIssueControl issueControl) {
         addClassName("add-Issue-view");
-
-        issueTyp.setItems("Architecture and Code Structure","Analyzability & Evaluability","Technical Infrastructure","Processes and Organization");
-        issueTyp.setPlaceholder("please select");
-
         add(createTitle());
-        add(issueTyp);
         add(createFormLayout());
         add(createButtonLayout());
-        addIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
 
         binder.bindInstanceFields(this);
         clearForm();
 
         cancel.addClickListener(e -> clearForm());
+
+        addIssue.addClickListener(click -> validateAndSave());
 
         addIssue.addClickListener(e -> {
             issueControl.createIssue(binder.getBean());
@@ -67,12 +64,20 @@ public class addIssueView extends Div {
 
     }
 
+    private void validateAndSave() {
+        if(binder.isValid()){
+            binder.getBean();
+        }
+    }
+
     private Component createTitle() {
         return new H3("add Issue");
     }
 
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
+        issueTyp.setItems("Architecture and Code Structure","Analyzability & Evaluability","Technical Infrastructure","Processes and Organization");
+        issueTyp.setPlaceholder("please select");
         formLayout.add(id, name, issueTyp, description, minValue, maxValue);
         return formLayout;
     }
@@ -84,7 +89,11 @@ public class addIssueView extends Div {
     private Component createButtonLayout() {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.addClassName("button-layout");
+
         addIssue.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+
+        binder.addStatusChangeListener(event -> addIssue.setEnabled(binder.isValid()));
+
         buttonLayout.add(addIssue);
         buttonLayout.add(cancel);
         return buttonLayout;
