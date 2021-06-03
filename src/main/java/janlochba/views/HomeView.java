@@ -33,7 +33,7 @@ public class HomeView extends HorizontalLayout {
         // Buttons eine Funktion geben
 
         toAddIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
-        toAddSolution.addClickListener(event -> UI.getCurrent().navigate("add Solution"));
+        toAddSolution.addClickListener(event -> UI.getCurrent().navigate("add-Solution"));
         toAnalysis.addClickListener(event -> UI.getCurrent().navigate("RecAnalysis"));
         toImprove.addClickListener(event -> UI.getCurrent().navigate("RecImprove"));
     }

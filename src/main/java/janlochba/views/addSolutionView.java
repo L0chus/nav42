@@ -1,21 +1,24 @@
 package janlochba.views;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import janlochba.control.ManageSolutionControl;
 import janlochba.dto.impl.SolutionDTOImpl;
 
 
-@Route(value = "add Solution", layout = MainView.class)
+@Route(value = "add-Solution", layout = MainView.class)
 @PageTitle("add-Solution")
 public class addSolutionView extends Div {
 
@@ -32,21 +35,28 @@ public class addSolutionView extends Div {
     private Button addSolution = new Button("add to Issue List");
     private Button cancel = new Button("cancel");
 
-    // Kein Plan wie das heißt
-
     private Binder<SolutionDTOImpl> binder = new Binder(SolutionDTOImpl.class);
 
     // die View an sich
 
-    public addSolutionView() {
+    public addSolutionView(ManageSolutionControl solutionControl) {
         addClassName("add-Solution-view");
+
         add(createTitle());
         add(createFormLayout());
         add(createButtonLayout());
-        add(addSolution);
+        addSolution.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
+
+        binder.bindInstanceFields(this);
+        clearForm();
+
         cancel.addClickListener(e -> clearForm());
 
-        add(cancel);
+        addSolution.addClickListener(e -> {
+            solutionControl.createSolution(binder.getBean());
+            Notification.show("successfully added to Issue List");
+            clearForm();
+        });
 
     }
 

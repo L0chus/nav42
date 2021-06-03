@@ -38,7 +38,7 @@ public class ImprovementBacklogView extends Div {
 
         add(addSolution);
 
-        addSolution.addClickListener(event -> UI.getCurrent().navigate("add Solution"));
+        addSolution.addClickListener(event -> UI.getCurrent().navigate("add-Solution"));
 
     }
 
@@ -51,8 +51,8 @@ public class ImprovementBacklogView extends Div {
         Grid.Column<SolutionDTO> idColumn = grid.addColumn(SolutionDTO::getId).setHeader("ID");
         Grid.Column<SolutionDTO> nameColumn = grid.addColumn(SolutionDTO::getName).setHeader("Solution");
         Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description");
-        Grid.Column<SolutionDTO> minCostColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost");
-        Grid.Column<SolutionDTO> maxCostColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost");
+        Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost");
+        Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost");
 
         return grid;
     }

@@ -51,9 +51,7 @@ public class addIssueView extends Div {
         add(issueTyp);
         add(createFormLayout());
         add(createButtonLayout());
-        addIssue.addClickListener(e -> {
-            UI.getCurrent().navigate("add-Issue");
-        });
+        addIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
 
         binder.bindInstanceFields(this);
         clearForm();
@@ -63,6 +61,7 @@ public class addIssueView extends Div {
         addIssue.addClickListener(e -> {
             issueControl.createIssue(binder.getBean());
             Notification.show("successfully added to Issue List");
+            clearForm();
         });
 
 
