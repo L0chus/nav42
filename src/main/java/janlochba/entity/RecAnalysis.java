@@ -6,20 +6,20 @@ import java.util.Objects;
 @Entity
 @Table( name = "recAnalysis", schema = "nav42")
 public class RecAnalysis {
-    private String id;
+
+    private Integer id;
     private String name;
     private String description;
-    private String typ;
     private String extra1;
     private String extra2;
 
     @Id
     @Column(name = "id")
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -43,15 +43,6 @@ public class RecAnalysis {
         this.description = description;
     }
 
-    @Basic
-    @Column(name = "Typ")
-    public String getTyp() {
-        return typ;
-    }
-
-    public void setTyp(String typ) {
-        this.typ = typ;
-    }
 
     @Basic
     @Column(name = "extra1")
@@ -78,11 +69,11 @@ public class RecAnalysis {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RecAnalysis that = (RecAnalysis) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(typ, that.typ) && Objects.equals(extra1, that.extra1) && Objects.equals(extra2, that.extra2);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(extra1, that.extra1) && Objects.equals(extra2, that.extra2);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, typ, extra1, extra2);
+        return Objects.hash(id, name, description, extra1, extra2);
     }
 }

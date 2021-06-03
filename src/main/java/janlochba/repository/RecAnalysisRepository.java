@@ -1,4 +1,10 @@
 package janlochba.repository;
 
-public interface RecAnalysisRepository {
+import janlochba.entity.RecAnalysis;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RecAnalysisRepository extends JpaRepository<RecAnalysis,Integer> {
+
+
+
 }

@@ -1,4 +1,10 @@
 package janlochba.repository;
 
-public interface RecImproveRepository {
+import janlochba.entity.RecImprove;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RecImproveRepository extends JpaRepository<RecImprove,Integer> {
+
+
+
 }
