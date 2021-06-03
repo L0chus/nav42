@@ -54,7 +54,7 @@ public class addSolutionView extends Div {
 
         addSolution.addClickListener(e -> {
             solutionControl.createSolution(binder.getBean());
-            Notification.show("successfully added to Issue List");
+            Notification.show("successfully added to Improvement Backlog");
             clearForm();
         });
 

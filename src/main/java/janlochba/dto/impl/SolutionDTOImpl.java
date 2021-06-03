@@ -50,11 +50,11 @@ public class SolutionDTOImpl implements SolutionDTO {
         this.description = description;
     }
 
-    public void setMinCost(Double minValue) {
+    public void setMinCost(Double minCost) {
         this.minCost = minCost;
     }
 
-    public void setMaxCost(Double maxValue) {
-        this.maxCost = maxCost;
+    public void setMaxCost(Double maxCost) {
+        this.maxCost=maxCost;
     }
 }
