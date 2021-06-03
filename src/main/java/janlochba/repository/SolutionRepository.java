@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface SolutionRepository extends JpaRepository<Solution,String> {
 
-    List<SolutionDTO> findAllByOrderByMaxCostDesc();
+    List<SolutionDTO> findTop15ByOrderByMaxCostDesc();;
 }

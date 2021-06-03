@@ -23,6 +23,6 @@ public class ManageSolutionControl {
     }
 
     public List<SolutionDTO> readAllSolutions(){
-        return repository.findAllByOrderByMaxCostDesc();
+        return repository.findTop15ByOrderByMaxCostDesc();
     }
 }

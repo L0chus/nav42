@@ -15,5 +15,7 @@ public interface IssueRepository extends JpaRepository<Issue,String> {
     List<IssueDTO> findAllByOrderByMaxValueAsc();
     //Absteigende Liste
     List<IssueDTO> findAllByOrderByMaxValueDesc();
+    //nur die Top X finden
+    List<IssueDTO> findTop15ByOrderByMaxValueDesc();
 
 }
