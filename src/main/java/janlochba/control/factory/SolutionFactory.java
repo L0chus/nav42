@@ -8,7 +8,7 @@ public class SolutionFactory {
 
         Solution solution = new Solution();
 
-        solution.setId(solutionDTO.getID());
+        solution.setId(solutionDTO.getId());
         solution.setName(solutionDTO.getName());
         solution.setDescription(solutionDTO.getDescription());
         solution.setMinCost(solutionDTO.getMinCost());

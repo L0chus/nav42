@@ -21,7 +21,7 @@ public class addSolutionView extends Div {
 
     // Input Felder
 
-    private TextField id = new TextField("id"); // soll automatisch vergeben werden
+    private TextField id = new TextField("id");
     private TextField name = new TextField("Solution name");
     private TextField description = new TextField("Description");
     private NumberField minCost = new NumberField("min Cost");
@@ -44,6 +44,8 @@ public class addSolutionView extends Div {
         add(createFormLayout());
         add(createButtonLayout());
         add(addSolution);
+        cancel.addClickListener(e -> clearForm());
+
         add(cancel);
 
     }

@@ -9,6 +9,11 @@ import java.util.List;
 
 public interface IssueRepository extends JpaRepository<Issue,String> {
 
+    //Alle finden
     List<IssueDTO> findIssueByIdNotNull();
+    //Aufsteigende Liste
+    List<IssueDTO> findAllByOrderByMaxValueAsc();
+    //Absteigende Liste
+    List<IssueDTO> findAllByOrderByMaxValueDesc();
 
 }

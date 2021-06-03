@@ -26,7 +26,7 @@ public class ManageIssueControl {
     }
 
    public List<IssueDTO> readAllIssues(){
-        return repository.findIssueByIdNotNull();
+       return repository.findAllByOrderByMaxValueDesc();
     }
 
 }

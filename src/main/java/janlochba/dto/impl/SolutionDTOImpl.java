@@ -7,12 +7,12 @@ public class SolutionDTOImpl implements SolutionDTO {
     private String id;
     private String name;
     private String description;
-    private Long minCost;
-    private Long maxCost;
+    private Double minCost;
+    private Double maxCost;
 
     //getter
     @Override
-    public String getID() {
+    public String getId() {
         return id;
     }
 
@@ -27,12 +27,12 @@ public class SolutionDTOImpl implements SolutionDTO {
     }
 
     @Override
-    public Long getMinCost() {
+    public Double getMinCost() {
         return minCost;
     }
 
     @Override
-    public Long getMaxCost() {
+    public Double getMaxCost() {
         return maxCost;
     }
 
@@ -50,11 +50,11 @@ public class SolutionDTOImpl implements SolutionDTO {
         this.description = description;
     }
 
-    public void setMinCost(Long minValue) {
+    public void setMinCost(Double minValue) {
         this.minCost = minCost;
     }
 
-    public void setMaxCost(Long maxValue) {
+    public void setMaxCost(Double maxValue) {
         this.maxCost = maxCost;
     }
 }

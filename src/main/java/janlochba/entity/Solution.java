@@ -9,10 +9,11 @@ public class Solution {
     private String id;
     private String name;
     private String description;
-    private Long minCost;
-    private Long maxCost;
+    private Double minCost;
+    private Double maxCost;
 
     @Id
+    //@GeneratedValue
     @Column(name = "id")
     public String getId() {
         return id;
@@ -23,7 +24,7 @@ public class Solution {
     }
 
     @Basic
-    @Column(name = "Name")
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -33,7 +34,7 @@ public class Solution {
     }
 
     @Basic
-    @Column(name = "Description")
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -43,22 +44,22 @@ public class Solution {
     }
 
     @Basic
-    @Column(name = "minCost")
-    public Long getMinCost() {
+    @Column(name = "min_cost")
+    public Double getMinCost() {
         return minCost;
     }
 
-    public void setMinCost(Long minCost) {
+    public void setMinCost(Double minCost) {
         this.minCost = minCost;
     }
 
     @Basic
-    @Column(name = "maxCost")
-    public Long getMaxCost() {
+    @Column(name = "max_cost")
+    public Double getMaxCost() {
         return maxCost;
     }
 
-    public void setMaxCost(Long maxCost) {
+    public void setMaxCost(Double maxCost) {
         this.maxCost = maxCost;
     }
 

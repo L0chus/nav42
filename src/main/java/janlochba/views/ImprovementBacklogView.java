@@ -11,9 +11,9 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import janlochba.control.ManageSolutionControl;
 import janlochba.dto.SolutionDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Route(value = "Improvement_Backlog", layout = MainView.class)
@@ -21,18 +21,24 @@ import java.util.List;
 
 public class ImprovementBacklogView extends Div {
 
-    private List<SolutionDTO> improvementBacklog = new ArrayList<>();
+    private List<SolutionDTO> improvementBacklog;
     private Button addSolution = new Button("add new Solution");
 
-    public ImprovementBacklogView() {
+    public ImprovementBacklogView(ManageSolutionControl solutionControl) {
+
         addClassName("improvement-backlog-view");
+
+        improvementBacklog = solutionControl.readAllSolutions();
+
         add(createTitle());
+
         add(this.createGridTable());
+
         add(createButtonLayout());
+
         add(addSolution);
-        addSolution.addClickListener(event -> {
-            UI.getCurrent().navigate("add Solution");
-        });
+
+        addSolution.addClickListener(event -> UI.getCurrent().navigate("add Solution"));
 
     }
 
@@ -42,7 +48,7 @@ public class ImprovementBacklogView extends Div {
         ListDataProvider<SolutionDTO> dataProvider = new ListDataProvider<>(improvementBacklog);
         grid.setDataProvider(dataProvider);
 
-        Grid.Column<SolutionDTO> idColumn = grid.addColumn(SolutionDTO::getID).setHeader("ID");
+        Grid.Column<SolutionDTO> idColumn = grid.addColumn(SolutionDTO::getId).setHeader("ID");
         Grid.Column<SolutionDTO> nameColumn = grid.addColumn(SolutionDTO::getName).setHeader("Solution");
         Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description");
         Grid.Column<SolutionDTO> minCostColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost");

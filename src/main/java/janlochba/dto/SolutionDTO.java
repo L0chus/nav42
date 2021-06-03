@@ -2,14 +2,14 @@ package janlochba.dto;
 
 public interface SolutionDTO {
 
-    public String getID();
+    public String getId();
 
     public String getName();
 
     public String getDescription();
 
-    public Long getMinCost();
+    public Double getMinCost();
 
-    public Long getMaxCost();
+    public Double getMaxCost();
 
 }

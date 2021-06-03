@@ -1,17 +1,19 @@
 package janlochba.views;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import janlochba.control.ManageIssueControl;
 import janlochba.dto.IssueDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Route(value = "Issue_List", layout = MainView.class)
@@ -19,7 +21,7 @@ import java.util.List;
 public class IssueListView extends Div {
 
     private final List<IssueDTO> issueList;
-
+    private Button addIssue = new Button("add new Issue");
     public IssueListView( ManageIssueControl issueControl ) {
         addClassName("issue-list-view");
 
@@ -29,8 +31,11 @@ public class IssueListView extends Div {
 
         add(this.createGridTable());
 
-        Button addIssue = new Button("add new Issue");
+        add(createButtonLayout());
+
         add(addIssue);
+
+        addIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
 
     }
 
@@ -53,6 +58,14 @@ public class IssueListView extends Div {
 
     private Component createTitle() {
         return new H3("Issue List");
+    }
+
+    private Component createButtonLayout() {
+        HorizontalLayout buttonLayout = new HorizontalLayout();
+        buttonLayout.addClassName("button-layout");
+        addIssue.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        buttonLayout.add(addIssue);
+        return buttonLayout;
     }
 
 }
