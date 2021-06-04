@@ -46,7 +46,7 @@ public class RecImproveView extends Div {
     }
 
     private Component createTitle() {
-        return new H3("Analysis");
+        return new H3("Improve your Issue");
     }
 
     private Component createButtonLayout() {
