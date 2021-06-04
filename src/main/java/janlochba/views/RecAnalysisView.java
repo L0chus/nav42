@@ -10,6 +10,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import janlochba.control.ManageIssueControl;
 
 
 @Route(value = "RecAnalysis", layout = MainView.class)
@@ -20,12 +21,10 @@ public class RecAnalysisView extends Div {
     private ComboBox<String> box1 = new ComboBox<>();
     private ComboBox<String> box2 = new ComboBox<>();
 
-    public RecAnalysisView(){
+    public RecAnalysisView(ManageIssueControl control){
 
         box1.setItems("new Project","new API","operated System");
         box1.setPlaceholder("please select");
-
-        // Bei box2 soll nur das angezeigt werden was nach der selektion in box1 noch möglich ist
 
         box2.setItems("known error","code quality","data source","data","generally","requirements","HW","infrastructure","API","UI");
         box2.setPlaceholder("please select");
@@ -53,5 +52,6 @@ public class RecAnalysisView extends Div {
 
         return verticalLayout;
     }
+
 
 }

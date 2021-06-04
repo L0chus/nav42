@@ -1,13 +1,12 @@
 package janlochba.views;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
-import com.vaadin.flow.component.crud.Crud;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -49,9 +48,7 @@ public class addIssueView extends Div {
         add(createButtonLayout());
 
         binder.bindInstanceFields(this);
-        clearForm();
-
-        cancel.addClickListener(e -> clearForm());
+        binder.forField(issueTyp).asRequired("Issue Typ").bind("typ");
 
         addIssue.addClickListener(click -> validateAndSave());
 
@@ -71,7 +68,7 @@ public class addIssueView extends Div {
     }
 
     private Component createTitle() {
-        return new H3("add Issue");
+        return new H1("add Issue");
     }
 
     private Component createFormLayout() {
@@ -93,7 +90,8 @@ public class addIssueView extends Div {
         addIssue.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         binder.addStatusChangeListener(event -> addIssue.setEnabled(binder.isValid()));
-
+        addIssue.setEnabled(false);
+        cancel.addClickListener(e -> clearForm());
         buttonLayout.add(addIssue);
         buttonLayout.add(cancel);
         return buttonLayout;

@@ -32,7 +32,7 @@ public class RecAnalysisDTOImpl implements RecAnalysisDTO {
     }
 
     @Override
-    public String getExtra1() {
+    public String getExtra() {
         return extra1;
     }
 
