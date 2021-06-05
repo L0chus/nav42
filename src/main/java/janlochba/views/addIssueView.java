@@ -7,7 +7,6 @@ import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -48,6 +47,7 @@ public class addIssueView extends Div {
         add(createButtonLayout());
 
         binder.bindInstanceFields(this);
+        clearForm();
         binder.forField(issueTyp).asRequired("Issue Typ").bind("typ");
 
         addIssue.addClickListener(click -> validateAndSave());

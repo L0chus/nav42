@@ -28,7 +28,6 @@ public class RecImproveView extends VerticalLayout {
                 buildForm(),
                 new H3(" we recommend you the following Method: ")
                 );
-
     }
 
     private Component buildForm() {
@@ -47,8 +46,6 @@ public class RecImproveView extends VerticalLayout {
         comBox3.put("reporting", Arrays.asList("-"));
         comBox3.put("change", Arrays.asList("hardware","software"));
         comBox3.put("Documentation", Arrays.asList("improve","expand"));
-
-
 
         ComboBox<String> typSelect = new ComboBox<>("Issue Typ", typOfIssue.keySet());
         ComboBox<String> boxSelect = new ComboBox<>("box1", Collections.emptyList());

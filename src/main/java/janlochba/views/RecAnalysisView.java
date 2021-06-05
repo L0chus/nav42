@@ -19,10 +19,7 @@ public class RecAnalysisView extends VerticalLayout {
 
     public RecAnalysisView() {
 
-        add(
-                new H1("Analyze to find new Issues"),
-                buildForm()
-        );
+        add( new H1("Analyze to find new Issues"), buildForm());
 
     }
 
@@ -39,14 +36,11 @@ public class RecAnalysisView extends VerticalLayout {
         ComboBox<String> box2 = new ComboBox<>("especially on", Collections.emptyList());
         box2.setPlaceholder("please select");
 
-
-
         Button recAnalysis = new Button("get a Method");
         Div errorsLayout = new Div();
 
         recAnalysis.setThemeName("primary");
         recAnalysis.setEnabled(false);
-
 
         box2.setEnabled(false);
         box1.addValueChangeListener(e -> {
@@ -63,8 +57,6 @@ public class RecAnalysisView extends VerticalLayout {
            boolean enableBox2 = typBox2 != null && !typBox2.isEmpty();
            recAnalysis.setEnabled(enableBox2);
         });
-
-
 
         HorizontalLayout formLayout = new HorizontalLayout(box1, box2, recAnalysis);
         Div wrapperLayout = new Div(formLayout, errorsLayout);
