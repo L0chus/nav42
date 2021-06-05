@@ -13,18 +13,13 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import janlochba.dto.RecImproveDTO;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Route(value = "RecImprove", layout = MainView.class)
 @PageTitle("Improve")
 public class RecImproveView extends VerticalLayout {
 
     private Grid<RecImproveDTO> recGrid = new Grid<>(RecImproveDTO.class);
-
-    private Button analysis = new Button("Improve");
 
     public RecImproveView(){
 
@@ -37,28 +32,27 @@ public class RecImproveView extends VerticalLayout {
     }
 
     private Component buildForm() {
-
+        // Auswahl an Fehlertypen
         Map<String, List<String>> typOfIssue = new HashMap<>();
-        typOfIssue.put("Processes and Organization", Arrays.asList("Test","1","2","3")); // da müssen die einzelnen unterpunkte von Processes and Organization rein
-        typOfIssue.put("Architecture and Code Structure", Arrays.asList("Test1","1","2","3"));
-        typOfIssue.put("Technical Infrastructure", Arrays.asList("Test2","1","2","3"));
-        typOfIssue.put("Analyzability and Evaluatability", Arrays.asList("Test3","1","2","3"));
+        typOfIssue.put("Processes and Organization", Arrays.asList(""));
+        typOfIssue.put("Architecture and Code Structure", Arrays.asList("Testing","Simplify Code","Break Dependencies","reporting"));
+        typOfIssue.put("Technical Infrastructure", Arrays.asList("change"));
+        typOfIssue.put("Analyzability and Evaluatability", Arrays.asList("Documentation"));
 
-        Map<String, List<String>> typOfBox = new HashMap<>();
-        typOfIssue.put("Processes and Organization", Arrays.asList("Test","1","2","3"));
-        typOfIssue.put("Architecture and Code Structure", Arrays.asList("Test1","1"));
-        typOfIssue.put("Technical Infrastructure", Arrays.asList("Test2","2"));
-        typOfIssue.put("Analyzability and Evaluatability", Arrays.asList("Test3","3"));
+        // Auswahl für Architecture and Code Structure
+        Map<String, List<String>> architectureAndCode = new HashMap<>();
+        architectureAndCode.put("Testing", Arrays.asList("preconditions","Units","load","acceptance"));
+        architectureAndCode.put("Simplify Code", Arrays.asList("refactoring","reduce Unmaintainable Code","downsize"));
+        architectureAndCode.put("Break Dependencies", Arrays.asList("protect other parts from changes","split up Interfaces","Customize interfaces"));
+        architectureAndCode.put("reporting", Arrays.asList("-"));
+        architectureAndCode.put("change", Arrays.asList("hardware","software"));
+        architectureAndCode.put("Documentation", Arrays.asList("improve","expand"));
 
-        Map<String, List<String>> typOfBox2 = new HashMap<>();
-        typOfIssue.put("Processes and Organization", Arrays.asList("Test","1"));
-        typOfIssue.put("Architecture and Code Structure", Arrays.asList("Test1","1"));
-        typOfIssue.put("Technical Infrastructure", Arrays.asList("Test2","1"));
-        typOfIssue.put("Analyzability and Evaluatability", Arrays.asList("Test3","66"));
+
 
         ComboBox<String> typSelect = new ComboBox<>("Issue Typ", typOfIssue.keySet());
-        ComboBox<String> boxSelect = new ComboBox<>("box1", typOfBox.keySet());
-        ComboBox<String> box2Select = new ComboBox<>("box2", typOfBox2.keySet());
+        ComboBox<String> boxSelect = new ComboBox<>("box1", Collections.emptyList());
+        ComboBox<String> box2Select = new ComboBox<>("box2", Collections.emptyList());
 
         Button recImp = new Button("recommend Method");
         Div errorsLayout = new Div();
@@ -83,7 +77,7 @@ public class RecImproveView extends VerticalLayout {
             box2Select.setEnabled(enabled); // box wird entsperrt
             if(enabled){
                 box2Select.setValue(""); // damit wenn es frei wird auf default ist
-                box2Select.setItems(boxSelect.getValue());
+                box2Select.setItems(architectureAndCode.get(typ2));
             }
         });
 

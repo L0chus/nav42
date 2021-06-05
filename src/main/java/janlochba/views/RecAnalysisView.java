@@ -41,7 +41,7 @@ public class RecAnalysisView extends VerticalLayout {
 
 
 
-        Button recAnalysis = new Button("recommend Method");
+        Button recAnalysis = new Button("get a Method");
         Div errorsLayout = new Div();
 
         recAnalysis.setThemeName("primary");
