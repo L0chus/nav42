@@ -17,9 +17,6 @@ import java.util.*;
 @PageTitle("Analysis")
 public class RecAnalysisView extends VerticalLayout {
 
-    private Button analysis = new Button("analyze");
-
-
     public RecAnalysisView() {
 
         add(
@@ -42,10 +39,14 @@ public class RecAnalysisView extends VerticalLayout {
         ComboBox<String> box2 = new ComboBox<>("especially on", Collections.emptyList());
         box2.setPlaceholder("please select");
 
+
+
         Button recAnalysis = new Button("recommend Method");
         Div errorsLayout = new Div();
 
-        analysis.setThemeName("primary");
+        recAnalysis.setThemeName("primary");
+        recAnalysis.setEnabled(false);
+
 
         box2.setEnabled(false);
         box1.addValueChangeListener(e -> {
@@ -57,8 +58,15 @@ public class RecAnalysisView extends VerticalLayout {
                 box2.setItems(lookingAt.get(type));
             }
         });
+        box2.addValueChangeListener(e -> {
+           String typBox2 = e.getValue();
+           boolean enableBox2 = typBox2 != null && !typBox2.isEmpty();
+           recAnalysis.setEnabled(enableBox2);
+        });
 
-        HorizontalLayout formLayout = new HorizontalLayout(box1, box2, analysis);
+
+
+        HorizontalLayout formLayout = new HorizontalLayout(box1, box2, recAnalysis);
         Div wrapperLayout = new Div(formLayout, errorsLayout);
         formLayout.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         wrapperLayout.setWidth("100%");
