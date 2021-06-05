@@ -32,21 +32,21 @@ public class RecImproveView extends VerticalLayout {
     }
 
     private Component buildForm() {
-        // Auswahl an Fehlertypen
+        // Auswahl an Fehlertypen und deren Unterkategorien (2. Box)
         Map<String, List<String>> typOfIssue = new HashMap<>();
         typOfIssue.put("Processes and Organization", Arrays.asList(""));
         typOfIssue.put("Architecture and Code Structure", Arrays.asList("Testing","Simplify Code","Break Dependencies","reporting"));
         typOfIssue.put("Technical Infrastructure", Arrays.asList("change"));
         typOfIssue.put("Analyzability and Evaluatability", Arrays.asList("Documentation"));
 
-        // Auswahl für Architecture and Code Structure
-        Map<String, List<String>> architectureAndCode = new HashMap<>();
-        architectureAndCode.put("Testing", Arrays.asList("preconditions","Units","load","acceptance"));
-        architectureAndCode.put("Simplify Code", Arrays.asList("refactoring","reduce Unmaintainable Code","downsize"));
-        architectureAndCode.put("Break Dependencies", Arrays.asList("protect other parts from changes","split up Interfaces","Customize interfaces"));
-        architectureAndCode.put("reporting", Arrays.asList("-"));
-        architectureAndCode.put("change", Arrays.asList("hardware","software"));
-        architectureAndCode.put("Documentation", Arrays.asList("improve","expand"));
+        // Auswahl für dritte Box
+        Map<String, List<String>> comBox3 = new HashMap<>();
+        comBox3.put("Testing", Arrays.asList("preconditions","Units","load","acceptance"));
+        comBox3.put("Simplify Code", Arrays.asList("refactoring","reduce Unmaintainable Code","downsize"));
+        comBox3.put("Break Dependencies", Arrays.asList("protect other parts from changes","split up Interfaces","Customize interfaces"));
+        comBox3.put("reporting", Arrays.asList("-"));
+        comBox3.put("change", Arrays.asList("hardware","software"));
+        comBox3.put("Documentation", Arrays.asList("improve","expand"));
 
 
 
@@ -58,6 +58,7 @@ public class RecImproveView extends VerticalLayout {
         Div errorsLayout = new Div();
 
         recImp.setThemeName("primary");
+        recImp.setEnabled(false);
 
         boxSelect.setEnabled(false); // box ist gesperrt
         box2Select.setEnabled(false); // box2 ist gesperrt
@@ -77,8 +78,13 @@ public class RecImproveView extends VerticalLayout {
             box2Select.setEnabled(enabled); // box wird entsperrt
             if(enabled){
                 box2Select.setValue(""); // damit wenn es frei wird auf default ist
-                box2Select.setItems(architectureAndCode.get(typ2));
+                box2Select.setItems(comBox3.get(typ2));
             }
+        });
+        box2Select.addValueChangeListener(e -> {
+           String typ3 = e.getValue();
+           boolean enableButton = typ3 != null && !typ3.isEmpty();
+           recImp.setEnabled(enableButton);
         });
 
 
