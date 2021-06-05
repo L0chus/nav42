@@ -26,8 +26,8 @@ public class RecImproveView extends VerticalLayout {
         add(
                 new H1("Improvement Method for your Issue"),
                 buildForm(),
-                new H3(" we recommend you the following Method: "),
-                recGrid);
+                new H3(" we recommend you the following Method: ")
+                );
 
     }
 
@@ -81,12 +81,12 @@ public class RecImproveView extends VerticalLayout {
                 box2Select.setItems(comBox3.get(typ2));
             }
         });
+
         box2Select.addValueChangeListener(e -> {
            String typ3 = e.getValue();
            boolean enableButton = typ3 != null && !typ3.isEmpty();
            recImp.setEnabled(enableButton);
         });
-
 
         HorizontalLayout formLayout = new HorizontalLayout(typSelect, boxSelect, box2Select, recImp);
         Div wrapperLayout = new Div(formLayout, errorsLayout);
