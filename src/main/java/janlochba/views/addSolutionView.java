@@ -15,7 +15,6 @@ import com.vaadin.flow.router.Route;
 import janlochba.control.ManageSolutionControl;
 import janlochba.dto.impl.SolutionDTOImpl;
 
-
 @Route(value = "add-Solution", layout = MainView.class)
 @PageTitle("add-Solution")
 public class addSolutionView extends Div {

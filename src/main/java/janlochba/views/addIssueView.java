@@ -17,7 +17,6 @@ import com.vaadin.flow.router.Route;
 import janlochba.control.ManageIssueControl;
 import janlochba.dto.impl.IssueDTOImpl;
 
-
 @Route(value = "add-Issue", layout = MainView.class)
 @PageTitle("add-Issue")
 public class addIssueView extends Div {
@@ -48,7 +47,12 @@ public class addIssueView extends Div {
 
         binder.bindInstanceFields(this);
         clearForm();
+        binder.forField(id).asRequired("id").bind("id");
         binder.forField(issueTyp).asRequired("Issue Typ").bind("typ");
+        binder.forField(name).asRequired("Issue name").bind("name");
+        binder.forField(description).asRequired("Description").bind("description");
+        binder.forField(minValue).asRequired("min Value").bind("minValue");
+        binder.forField(maxValue).asRequired("max Value").bind("maxValue");
 
         addIssue.addClickListener(click -> validateAndSave());
 
