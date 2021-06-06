@@ -5,6 +5,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -62,6 +63,10 @@ public class RecAnalysisView extends VerticalLayout {
         Div wrapperLayout = new Div(formLayout, errorsLayout);
         formLayout.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         wrapperLayout.setWidth("100%");
+
+        recAnalysis.addClickListener(event -> {
+            Notification.show(box1.getValue() + " " + box2.getValue());
+        });
 
         return wrapperLayout;
     }
