@@ -38,6 +38,13 @@ public class addSolutionView extends Div {
 
         binder.bindInstanceFields(this);
         clearForm();
+        binder.forField(id).asRequired("id").bind("id");
+        binder.forField(name).asRequired("Solution").bind("name");
+        binder.forField(description).asRequired("Description").bind("description");
+        binder.forField(minCost).asRequired("min Cost").bind("minCost");
+        binder.forField(maxCost).asRequired("max Cost").bind("maxCost");
+
+
 
         save.addClickListener( event -> {
 
