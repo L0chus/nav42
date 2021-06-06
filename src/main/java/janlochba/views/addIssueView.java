@@ -21,23 +21,17 @@ import janlochba.dto.impl.IssueDTOImpl;
 @PageTitle("add-Issue")
 public class addIssueView extends Div {
 
-    // Input Felder
+    private final TextField name = new TextField("Issue name");
+    private final TextField description = new TextField("Description");
+    private final ComboBox<String> issueTyp = new ComboBox<>("Issue Typ");
+    private final NumberField minValue = new NumberField("min Value");
+    private final NumberField maxValue = new NumberField("max Value");
 
-    private TextField id = new TextField("id"); //soll automatisch vergeben werden
-    private TextField name = new TextField("Issue name");
-    private TextField description = new TextField("Description");
-    private ComboBox<String> issueTyp = new ComboBox<>("Issue Typ");
-    private NumberField minValue = new NumberField("min Value");
-    private NumberField maxValue = new NumberField("max Value");
+    private final Button addIssue = new Button("add to Issue List");
+    private final Button cancel = new Button("cancel");
 
-    // Buttons
+    private final Binder<IssueDTOImpl> binder = new Binder(IssueDTOImpl.class);
 
-    private Button addIssue = new Button("add to Issue List");
-    private Button cancel = new Button("cancel");
-
-    private Binder<IssueDTOImpl> binder = new Binder(IssueDTOImpl.class);
-
-    // die View an sich
 
     public addIssueView(ManageIssueControl issueControl) {
         addClassName("add-Issue-view");
@@ -47,7 +41,7 @@ public class addIssueView extends Div {
 
         binder.bindInstanceFields(this);
         clearForm();
-        binder.forField(id).asRequired("id").bind("id");
+
         binder.forField(issueTyp).asRequired("Issue Typ").bind("typ");
         binder.forField(name).asRequired("Issue name").bind("name");
         binder.forField(description).asRequired("Description").bind("description");
@@ -61,7 +55,6 @@ public class addIssueView extends Div {
             Notification.show("successfully added to Issue List");
             clearForm();
         });
-
 
     }
 
@@ -79,7 +72,9 @@ public class addIssueView extends Div {
         FormLayout formLayout = new FormLayout();
         issueTyp.setItems("Architecture and Code Structure","Analyzability & Evaluability","Technical Infrastructure","Processes and Organization");
         issueTyp.setPlaceholder("please select");
-        formLayout.add(id, name, issueTyp, description, minValue, maxValue);
+        description.getStyle().set("maxHeight", "200%");
+        description.setPlaceholder("enter description here...");
+        formLayout.add(name, issueTyp, description, minValue, maxValue);
         return formLayout;
     }
 

@@ -4,7 +4,7 @@ import janlochba.dto.IssueDTO;
 
 public class IssueDTOImpl implements IssueDTO {
 
-    private String id;
+    private Integer id;
     private String name;
     private String description;
     private Double minValue;
@@ -13,7 +13,7 @@ public class IssueDTOImpl implements IssueDTO {
 
     //getter
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -44,7 +44,7 @@ public class IssueDTOImpl implements IssueDTO {
 
     //setter
 
-    public void setId(String id){
+    public void setId(Integer id){
         this.id = id;
     }
 

@@ -2,25 +2,27 @@ package janlochba.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table( name = "solution", schema = "nav42")
 public class Solution {
-    private String id;
+    private Integer id;
     private String name;
     private String description;
     private Double minCost;
     private Double maxCost;
+    private List<Issue> issues;
 
     @Id
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -79,5 +81,15 @@ public class Solution {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, description, minCost, maxCost);
+    }
+
+
+    @ManyToMany
+    public List<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
     }
 }

@@ -4,7 +4,7 @@ import janlochba.dto.SolutionDTO;
 
 public class SolutionDTOImpl implements SolutionDTO {
 
-    private String id;
+    private Integer id;
     private String name;
     private String description;
     private Double minCost;
@@ -12,7 +12,7 @@ public class SolutionDTOImpl implements SolutionDTO {
 
     //getter
     @Override
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -38,7 +38,7 @@ public class SolutionDTOImpl implements SolutionDTO {
 
     //setter
 
-    public void setId(String id){
+    public void setId(Integer id){
         this.id = id;
     }
 

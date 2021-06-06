@@ -19,14 +19,14 @@ import janlochba.dto.impl.SolutionDTOImpl;
 @PageTitle("add-Solution")
 public class addSolutionView extends Div {
 
-    private TextField id = new TextField("Id");
-    private TextField name = new TextField("Solution");
-    private TextField description = new TextField("Description");
-    private NumberField minCost = new NumberField("min Cost");
-    private NumberField maxCost = new NumberField("max Cost");
 
-    private Button save = new Button("add Solution");
-    private Button cancel = new Button("cancel");
+    private final TextField name = new TextField("Solution");
+    private final TextField description = new TextField("Description");
+    private final NumberField minCost = new NumberField("min Cost");
+    private final NumberField maxCost = new NumberField("max Cost");
+
+    private final Button save = new Button("add Solution");
+    private final Button cancel = new Button("cancel");
 
     private final Binder<SolutionDTOImpl> binder = new Binder<>(SolutionDTOImpl.class);
 
@@ -38,13 +38,10 @@ public class addSolutionView extends Div {
 
         binder.bindInstanceFields(this);
         clearForm();
-        binder.forField(id).asRequired("id").bind("id");
         binder.forField(name).asRequired("Solution").bind("name");
         binder.forField(description).asRequired("Description").bind("description");
         binder.forField(minCost).asRequired("min Cost").bind("minCost");
         binder.forField(maxCost).asRequired("max Cost").bind("maxCost");
-
-
 
         save.addClickListener( event -> {
 
@@ -64,7 +61,7 @@ public class addSolutionView extends Div {
 
     private Component formLayout() {
         FormLayout formLayout = new FormLayout();
-        formLayout.add(id, name, description, minCost , maxCost);
+        formLayout.add( name, description, minCost , maxCost);
         return formLayout;
     }
 
@@ -78,64 +75,5 @@ public class addSolutionView extends Div {
         save.setThemeName("primary");
         return horizontalLayout;
     }
-
-
-
-    /*private TextField id = new TextField("id");
-    private TextField name = new TextField("Solution name");
-    private TextField description = new TextField("Description");
-    private NumberField minCost = new NumberField("min Cost");
-    private NumberField maxCost = new NumberField("max Cost");
-
-    private Button addSolution = new Button("add to Issue List");
-    private Button cancel = new Button("cancel");
-
-    private Binder<SolutionDTOImpl> binder = new Binder(SolutionDTOImpl.class);
-
-    public addSolutionView(ManageSolutionControl solutionControl) {
-        addClassName("add-Solution-view");
-
-        add(new H1(""));
-        add(createFormLayout());
-        add(createButtonLayout());
-        addSolution.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
-
-        binder.bindInstanceFields(this);
-        clearForm();
-
-        cancel.addClickListener(e -> clearForm());
-
-        addSolution.addClickListener(e -> {
-            solutionControl.createSolution(binder.getBean());
-            Notification.show("successfully added to Improvement Backlog");
-            clearForm();
-        });
-
-    }
-
-    // Zeugs das in der View benutzt wird
-
-    private Component createTitle() {
-        return new H3("add Solution");
-    }
-
-    private Component createFormLayout() {
-        FormLayout formLayout = new FormLayout();
-        formLayout.add( id, name, description, minCost, maxCost);
-        return formLayout;
-    }
-    private void clearForm() {
-        binder.setBean(new SolutionDTOImpl());
-    }
-
-    private Component createButtonLayout() {
-        HorizontalLayout buttonLayout = new HorizontalLayout();
-        buttonLayout.addClassName("button-layout");
-        addSolution.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonLayout.add(addSolution);
-        buttonLayout.add(cancel);
-        return buttonLayout;
-    }*/
-
 
 }

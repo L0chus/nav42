@@ -18,4 +18,5 @@ public interface IssueRepository extends JpaRepository<Issue,String> {
     //nur die Top X finden
     List<IssueDTO> findTop15ByOrderByMaxValueDesc();
 
+
 }

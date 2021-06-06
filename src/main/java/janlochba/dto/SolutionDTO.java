@@ -2,7 +2,7 @@ package janlochba.dto;
 
 public interface SolutionDTO {
 
-    public String getId();
+    public Integer getId();
 
     public String getName();
 
