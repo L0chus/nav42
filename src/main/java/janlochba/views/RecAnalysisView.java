@@ -65,7 +65,7 @@ public class RecAnalysisView extends VerticalLayout {
         wrapperLayout.setWidth("100%");
 
         recAnalysis.addClickListener(event -> {
-            Notification.show(box1.getValue() + " " + box2.getValue());
+            Notification.show("");
         });
 
         return wrapperLayout;

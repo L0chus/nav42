@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface RecAnalysisRepository extends JpaRepository<RecAnalysis,Integer> {
 
-
+    List<RecAnalysisDTO> findByTypAndExtra1(String typ, String extra1);
 
 }

@@ -10,8 +10,8 @@ public interface RecAnalysisDTO {
 
     public String getTyp();
 
-    public String getExtra();
+    public String getExtra1();
 
-    public String getExtra2();
+
 
 }

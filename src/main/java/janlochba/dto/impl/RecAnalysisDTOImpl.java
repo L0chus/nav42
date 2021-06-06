@@ -9,7 +9,7 @@ public class RecAnalysisDTOImpl implements RecAnalysisDTO {
     private String description;
     private String typ;
     private String extra1;
-    private String extra2;
+
 
     @Override
     public Integer getId() {
@@ -32,12 +32,9 @@ public class RecAnalysisDTOImpl implements RecAnalysisDTO {
     }
 
     @Override
-    public String getExtra() {
+    public String getExtra1() {
         return extra1;
     }
 
-    @Override
-    public String getExtra2() {
-        return extra2;
-    }
+
 }

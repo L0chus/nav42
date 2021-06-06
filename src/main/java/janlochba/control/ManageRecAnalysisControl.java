@@ -13,8 +13,8 @@ public class ManageRecAnalysisControl {
     @Autowired
     private RecAnalysisRepository repository;
 
-    /*public List<RecAnalysisDTO> readRecAnalysis(){
-        return repository.findDistinctByExtra1();
-    }*/
+    public List<RecAnalysisDTO> recImprovement(String typ, String extra1){
+        return repository.findByTypAndExtra1(typ, extra1);
+    }
 
 }

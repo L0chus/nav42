@@ -21,8 +21,8 @@ import java.util.List;
 
 public class ImprovementBacklogView extends Div {
 
-    private List<SolutionDTO> improvementBacklog;
-    private Button addSolution = new Button("add new Solution");
+    private final List<SolutionDTO> improvementBacklog;
+    private final Button addSolution = new Button("add new Solution");
 
     public ImprovementBacklogView(ManageSolutionControl solutionControl) {
 
