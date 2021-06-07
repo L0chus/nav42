@@ -22,7 +22,8 @@ public class IssueListView extends Div {
 
     private final List<IssueDTO> issueList;
     private Button addIssue = new Button("add new Issue");
-    public IssueListView( ManageIssueControl issueControl ) {
+
+    public IssueListView(ManageIssueControl issueControl) {
         addClassName("issue-list-view");
 
         issueList = issueControl.readAllIssues();
@@ -39,7 +40,7 @@ public class IssueListView extends Div {
 
     }
 
-    private Component createGridTable(){
+    private Component createGridTable() {
         Grid<IssueDTO> grid = new Grid<>();
 
         ListDataProvider<IssueDTO> dataProvider = new ListDataProvider<>(issueList);
@@ -50,8 +51,8 @@ public class IssueListView extends Div {
         Grid.Column<IssueDTO> nameColumn = grid.addColumn(IssueDTO::getName).setHeader("Issue");
         Grid.Column<IssueDTO> descriptionColumn = grid.addColumn(IssueDTO::getDescription).setHeader("Description");
         Grid.Column<IssueDTO> typColumn = grid.addColumn(IssueDTO::getTyp).setHeader("Issue Typ");
-        Grid.Column<IssueDTO> minValueColumn = grid.addColumn(IssueDTO::getMinValue).setHeader("min Value");
-        Grid.Column<IssueDTO> maxValueColumn = grid.addColumn(IssueDTO::getMaxValue).setHeader("max Value");
+        Grid.Column<IssueDTO> minValueColumn = grid.addColumn(IssueDTO::getMinValue).setHeader("min Value in €");
+        Grid.Column<IssueDTO> maxValueColumn = grid.addColumn(IssueDTO::getMaxValue).setHeader("max Value in €");
 
         return grid;
     }

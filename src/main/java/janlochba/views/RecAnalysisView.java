@@ -44,7 +44,7 @@ public class RecAnalysisView extends VerticalLayout {
 
         analysisGrid.setDataProvider(dataProvider);
         analysisGrid.addColumn(RecAnalysisDTO::getName).setHeader("Name");
-        analysisGrid.addColumn(RecAnalysisDTO::getDescription).setHeader("Description");
+        analysisGrid.addColumn(RecAnalysisDTO::getDescription).setHeader("More Information under:");
 
         return analysisGrid;
     }
@@ -52,9 +52,9 @@ public class RecAnalysisView extends VerticalLayout {
     private Component buildForm() {
 
         Map<String, List<String>> lookingAt = new HashMap<>();
-        lookingAt.put("new API", List.of("in development", "requirements", "data", "Infrastructure", "known error", "general", "not sure"));
-        lookingAt.put("new Project", List.of("in development", "requirements", "data", "Infrastructure", "known error", "general", "not sure"));
-        lookingAt.put("operated System", List.of("UI", "API", "Datasource", "Data", "known error", "production hardware", "Infrastructure", "runtime behavior", "Code Quality", "general", "not sure"));
+        lookingAt.put("new API", List.of("in development", "requirements", "data", "Infrastructure", "known error", "general", "not sure", "old issues"));
+        lookingAt.put("new Project", List.of("in development", "requirements", "data", "Infrastructure", "known error", "general", "not sure", "old issues", "stakeholder"));
+        lookingAt.put("operated System", List.of("UI", "API", "Datasource", "data", "known error", "production hardware", "Infrastructure", "runtime behavior", "Code Quality", "general", "not sure"));
 
         ComboBox<String> box1 = new ComboBox<>("looking at", lookingAt.keySet());
         box1.setPlaceholder("please select");

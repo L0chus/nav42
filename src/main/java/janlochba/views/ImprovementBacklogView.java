@@ -42,7 +42,7 @@ public class ImprovementBacklogView extends Div {
 
     }
 
-    private Component createGridTable(){
+    private Component createGridTable() {
         Grid<SolutionDTO> grid = new Grid<>();
 
         ListDataProvider<SolutionDTO> dataProvider = new ListDataProvider<>(improvementBacklog);
@@ -51,8 +51,8 @@ public class ImprovementBacklogView extends Div {
         Grid.Column<SolutionDTO> idColumn = grid.addColumn(SolutionDTO::getId).setHeader("ID");
         Grid.Column<SolutionDTO> nameColumn = grid.addColumn(SolutionDTO::getName).setHeader("Solution");
         Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description");
-        Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost");
-        Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost");
+        Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost in €");
+        Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost in €");
 
         return grid;
     }

@@ -54,7 +54,7 @@ public class RecImproveView extends VerticalLayout {
 
         improveGrid.setDataProvider(dataProvider);
         improveGrid.addColumn(RecImproveDTO::getName).setHeader("Name");
-        improveGrid.addColumn(RecImproveDTO::getDescription).setHeader("Description");
+        improveGrid.addColumn(RecImproveDTO::getDescription).setHeader("More Information under:");
 
         return improveGrid;
     }
@@ -69,9 +69,9 @@ public class RecImproveView extends VerticalLayout {
 
         Map<String, List<String>> comBox3 = new HashMap<>();
         comBox3.put("Testing", List.of("preconditions", "Units", "load", "acceptance"));
-        comBox3.put("Simplify Code", List.of("refactoring", "reduce Unmaintainable Code", "downsize"));
+        comBox3.put("Simplify Code", List.of("refactoring", "reduce Unmaintainable Code"));
         comBox3.put("Break Dependencies", List.of("protect other parts from changes", "split up Interfaces", "Customize interfaces"));
-        comBox3.put("reporting", List.of("-"));
+        comBox3.put("reporting", List.of("reporting"));
         comBox3.put("change", List.of("hardware", "software"));
         comBox3.put("Documentation", List.of("improve", "expand"));
 
