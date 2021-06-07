@@ -53,7 +53,7 @@ public class RecImproveView extends VerticalLayout {
         Grid<RecImproveDTO> improveGrid = new Grid<>();
 
         improveGrid.setDataProvider(dataProvider);
-        improveGrid.addColumn(RecImproveDTO::getName).setHeader("Name");
+        improveGrid.addColumn(RecImproveDTO::getName).setHeader("Improve Method:");
         improveGrid.addColumn(RecImproveDTO::getDescription).setHeader("More Information under:");
 
         return improveGrid;
@@ -89,7 +89,7 @@ public class RecImproveView extends VerticalLayout {
         box2Select.setEnabled(false);
         typSelect.addValueChangeListener(e -> {
             String typ = e.getValue();
-            input1 = e.getValue(); // Übergibt den String für die Methoden ausgabe
+            input1 = e.getValue();
             boolean enabled = typ != null && !typ.isEmpty();
             boxSelect.setEnabled(enabled);
             if (enabled) {

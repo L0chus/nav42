@@ -43,7 +43,7 @@ public class RecAnalysisView extends VerticalLayout {
         Grid<RecAnalysisDTO> analysisGrid = new Grid<>();
 
         analysisGrid.setDataProvider(dataProvider);
-        analysisGrid.addColumn(RecAnalysisDTO::getName).setHeader("Name");
+        analysisGrid.addColumn(RecAnalysisDTO::getName).setHeader("Analysis Method:");
         analysisGrid.addColumn(RecAnalysisDTO::getDescription).setHeader("More Information under:");
 
         return analysisGrid;
@@ -70,13 +70,13 @@ public class RecAnalysisView extends VerticalLayout {
 
         box2.setEnabled(false);
         box1.addValueChangeListener(e -> {
-            String type = e.getValue();
+            String type = e.getValue(); // Übergibt den String für die Methodenausgabe
             input = e.getValue();
-            boolean enabled = type != null && !type.isEmpty();
+            boolean enabled = type != null && !type.isEmpty(); // überprüfen ob die Eingabe leer ist
             box2.setEnabled(enabled);
             if (enabled) {
-                box2.setValue("");
-                box2.setItems(lookingAt.get(type));
+                box2.setValue(""); // nächste Combobox auf default setzen
+                box2.setItems(lookingAt.get(type)); // die werte von der Liste in Looking at übergeben
             }
         });
         box2.addValueChangeListener(e -> {
