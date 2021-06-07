@@ -3,13 +3,16 @@ package janlochba.views;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import janlochba.control.ManageRecAnalysisControl;
+import janlochba.dto.RecAnalysisDTO;
 
 import java.util.*;
 
@@ -18,10 +21,32 @@ import java.util.*;
 @PageTitle("Analysis")
 public class RecAnalysisView extends VerticalLayout {
 
-    public RecAnalysisView() {
+    private String input;
+    private String input2;
+    private ManageRecAnalysisControl analysisControl;
 
-        add( new H1("Analyze to find new Issues"), buildForm());
+    private List<RecAnalysisDTO> analysisList = new ArrayList<>();
+    private ListDataProvider<RecAnalysisDTO> dataProvider = new ListDataProvider<>(analysisList);
 
+    public RecAnalysisView(ManageRecAnalysisControl analysisControl) {
+        this.analysisControl = analysisControl;
+
+        add(
+                new H1("Analyze to find new Issues"),
+                buildForm(),
+                createGridTable()
+        );
+
+    }
+
+    private Component createGridTable() {
+        Grid<RecAnalysisDTO> analysisGrid = new Grid<>();
+
+        analysisGrid.setDataProvider(dataProvider);
+        analysisGrid.addColumn(RecAnalysisDTO::getName).setHeader("Name");
+        analysisGrid.addColumn(RecAnalysisDTO::getDescription).setHeader("Description");
+
+        return analysisGrid;
     }
 
     private Component buildForm() {
@@ -46,6 +71,7 @@ public class RecAnalysisView extends VerticalLayout {
         box2.setEnabled(false);
         box1.addValueChangeListener(e -> {
             String type = e.getValue();
+            input = e.getValue();
             boolean enabled = type != null && !type.isEmpty();
             box2.setEnabled(enabled);
             if (enabled) {
@@ -54,9 +80,10 @@ public class RecAnalysisView extends VerticalLayout {
             }
         });
         box2.addValueChangeListener(e -> {
-           String typBox2 = e.getValue();
-           boolean enableBox2 = typBox2 != null && !typBox2.isEmpty();
-           recAnalysis.setEnabled(enableBox2);
+            String typBox2 = e.getValue();
+            input2 = e.getValue();
+            boolean enableBox2 = typBox2 != null && !typBox2.isEmpty();
+            recAnalysis.setEnabled(enableBox2);
         });
 
         HorizontalLayout formLayout = new HorizontalLayout(box1, box2, recAnalysis);
@@ -65,7 +92,9 @@ public class RecAnalysisView extends VerticalLayout {
         wrapperLayout.setWidth("100%");
 
         recAnalysis.addClickListener(event -> {
-            Notification.show("");
+            analysisList.clear();
+            analysisList.addAll(analysisControl.recImprovement(input, input2));
+            dataProvider.refreshAll();
         });
 
         return wrapperLayout;
