@@ -3,7 +3,6 @@ package janlochba.views;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
@@ -21,23 +20,19 @@ import java.util.List;
 public class IssueListView extends Div {
 
     private final List<IssueDTO> issueList;
-    private Button addIssue = new Button("add new Issue");
+    private final Button addIssue = new Button("add new Issue");
+    private final Button toAnalysis = new Button("go to Analysis");
 
     public IssueListView(ManageIssueControl issueControl) {
         addClassName("issue-list-view");
 
         issueList = issueControl.readAllIssues();
 
-        add(this.createTitle());
-
-        add(this.createGridTable());
-
-        add(createButtonLayout());
-
-        add(addIssue);
-
-        addIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
-
+        add(
+                new H3("Issue List"),
+                createGridTable(),
+                createButtonLayout()
+        );
     }
 
     private Component createGridTable() {
@@ -47,25 +42,36 @@ public class IssueListView extends Div {
 
         grid.setDataProvider(dataProvider);
 
-        Grid.Column<IssueDTO> idColumn = grid.addColumn(IssueDTO::getId).setHeader("ID");
-        Grid.Column<IssueDTO> nameColumn = grid.addColumn(IssueDTO::getName).setHeader("Issue");
-        Grid.Column<IssueDTO> descriptionColumn = grid.addColumn(IssueDTO::getDescription).setHeader("Description");
-        Grid.Column<IssueDTO> typColumn = grid.addColumn(IssueDTO::getTyp).setHeader("Issue Typ");
-        Grid.Column<IssueDTO> minValueColumn = grid.addColumn(IssueDTO::getMinValue).setHeader("min Value in €");
-        Grid.Column<IssueDTO> maxValueColumn = grid.addColumn(IssueDTO::getMaxValue).setHeader("max Value in €");
+        Grid.Column<IssueDTO> idColumn = grid.addColumn(IssueDTO::getId).setHeader("ID").setKey("id");
+        Grid.Column<IssueDTO> nameColumn = grid.addColumn(IssueDTO::getName).setHeader("Issue").setKey("name");
+        Grid.Column<IssueDTO> descriptionColumn = grid.addColumn(IssueDTO::getDescription).setHeader("Description").setKey("description");
+        Grid.Column<IssueDTO> typColumn = grid.addColumn(IssueDTO::getTyp).setHeader("Issue Typ").setKey("typ");
+        Grid.Column<IssueDTO> minValueColumn = grid.addColumn(IssueDTO::getMinValue).setHeader("min Value in €").setKey("minValue");
+        Grid.Column<IssueDTO> maxValueColumn = grid.addColumn(IssueDTO::getMaxValue).setHeader("max Value in €").setKey("maxValue");
+
+        grid.setWidth("100%");
+        grid.getColumnByKey("id").setFlexGrow(0).setWidth("50px");
+        grid.getColumnByKey("name").setFlexGrow(0).setWidth("15%");
+        grid.getColumnByKey("description").setFlexGrow(0).setWidth("35%");
+        grid.getColumnByKey("typ").setFlexGrow(0).setWidth("25%");
+        grid.getColumnByKey("minValue").setFlexGrow(0).setWidth("10%");
+        grid.getColumnByKey("maxValue").setFlexGrow(0).setWidth("10%");
 
         return grid;
     }
 
-    private Component createTitle() {
-        return new H3("Issue List");
-    }
 
     private Component createButtonLayout() {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.addClassName("button-layout");
-        addIssue.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonLayout.add(addIssue);
+
+        addIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
+        toAnalysis.addClickListener(event -> UI.getCurrent().navigate("RecAnalysis"));
+
+        addIssue.setThemeName("primary");
+        toAnalysis.setThemeName("primary");
+
+        buttonLayout.add(addIssue, toAnalysis);
         return buttonLayout;
     }
 

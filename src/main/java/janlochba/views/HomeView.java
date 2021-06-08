@@ -16,21 +16,17 @@ public class HomeView extends HorizontalLayout {
 
         addClassName("home-view");
 
-        // Buttons Erzeugen
-
         Button toAddIssue = new Button("add new Issue");
         Button toAddSolution = new Button("add new Solution");
         Button toAnalysis = new Button("go to Analysis");
         Button toImprove = new Button("Improve your Issue");
 
-        // Buttons einfügen
-
-        add(toAddIssue);
-        add(toAddSolution);
-        add(toAnalysis);
-        add(toImprove);
-
-        // Buttons eine Funktion geben
+        add(
+                toAddIssue,
+                toAddSolution,
+                toAnalysis,
+                toImprove
+        );
 
         toAddIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
         toAddSolution.addClickListener(event -> UI.getCurrent().navigate("add-Solution"));
