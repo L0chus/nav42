@@ -22,6 +22,7 @@ public class IssueListView extends Div {
     private final List<IssueDTO> issueList;
     private final Button addIssue = new Button("add new Issue");
     private final Button toAnalysis = new Button("go to Analysis");
+    private final Grid<IssueDTO> grid = new Grid<>();
 
     public IssueListView(ManageIssueControl issueControl) {
         addClassName("issue-list-view");
@@ -36,7 +37,7 @@ public class IssueListView extends Div {
     }
 
     private Component createGridTable() {
-        Grid<IssueDTO> grid = new Grid<>();
+
 
         ListDataProvider<IssueDTO> dataProvider = new ListDataProvider<>(issueList);
 
@@ -57,6 +58,8 @@ public class IssueListView extends Div {
         grid.getColumnByKey("minValue").setFlexGrow(0).setWidth("10%");
         grid.getColumnByKey("maxValue").setFlexGrow(0).setWidth("10%");
 
+        grid.setSelectionMode(Grid.SelectionMode.SINGLE);
+
         return grid;
     }
 
@@ -68,10 +71,12 @@ public class IssueListView extends Div {
         addIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
         toAnalysis.addClickListener(event -> UI.getCurrent().navigate("RecAnalysis"));
 
+
         addIssue.setThemeName("primary");
         toAnalysis.setThemeName("primary");
 
-        buttonLayout.add(addIssue, toAnalysis);
+        buttonLayout.add(
+                addIssue, toAnalysis);
         return buttonLayout;
     }
 
