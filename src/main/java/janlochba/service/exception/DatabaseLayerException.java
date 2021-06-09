@@ -11,7 +11,7 @@ public class DatabaseLayerException extends Throwable {
         this.reason = reason;
     }
 
-    public DatabaseLayerException( String reason ) {
+    public DatabaseLayerException(String reason) {
         this.reason = reason;
     }
 }

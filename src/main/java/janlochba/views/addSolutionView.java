@@ -30,7 +30,7 @@ public class addSolutionView extends Div {
 
     private final Binder<SolutionDTOImpl> binder = new Binder<>(SolutionDTOImpl.class);
 
-    public addSolutionView(ManageSolutionControl control){
+    public addSolutionView(ManageSolutionControl control) {
         addClassName("add-Solution-view");
         add(
                 new H1("add Solution"), buildForm()
@@ -43,7 +43,7 @@ public class addSolutionView extends Div {
         binder.forField(minCost).asRequired("min Cost").bind("minCost");
         binder.forField(maxCost).asRequired("max Cost").bind("maxCost");
 
-        save.addClickListener( event -> {
+        save.addClickListener(event -> {
 
             control.createSolution(binder.getBean());
 
@@ -54,14 +54,14 @@ public class addSolutionView extends Div {
 
     private Component buildForm() {
         Div wrapper = new Div();
-        wrapper.add(formLayout(),buttonLayout());
+        wrapper.add(formLayout(), buttonLayout());
         wrapper.setWidth("75%");
         return wrapper;
     }
 
     private Component formLayout() {
         FormLayout formLayout = new FormLayout();
-        formLayout.add( name, description, minCost , maxCost);
+        formLayout.add(name, description, minCost, maxCost);
         return formLayout;
     }
 
@@ -69,9 +69,9 @@ public class addSolutionView extends Div {
         binder.setBean(new SolutionDTOImpl());
     }
 
-    private Component buttonLayout(){
+    private Component buttonLayout() {
         HorizontalLayout horizontalLayout = new HorizontalLayout();
-        horizontalLayout.add(save,cancel);
+        horizontalLayout.add(save, cancel);
         save.setThemeName("primary");
         return horizontalLayout;
     }

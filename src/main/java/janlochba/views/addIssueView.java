@@ -59,7 +59,7 @@ public class addIssueView extends Div {
     }
 
     private void validateAndSave() {
-        if(binder.isValid()){
+        if (binder.isValid()) {
             binder.getBean();
         }
     }
@@ -70,7 +70,7 @@ public class addIssueView extends Div {
 
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
-        issueTyp.setItems("Architecture and Code Structure","Analyzability & Evaluability","Technical Infrastructure","Processes and Organization");
+        issueTyp.setItems("Architecture and Code Structure", "Analyzability & Evaluability", "Technical Infrastructure", "Processes and Organization");
         issueTyp.setPlaceholder("please select");
         description.getStyle().set("maxHeight", "200%");
         description.setPlaceholder("enter description here...");
