@@ -59,7 +59,7 @@ public class HomeView extends Div {
                 new H4("Step 1: go \"to analysis\" page and get a method to analyze your system / project" + "\n"),
                 new H4("Step 2: after you used the recommended analyze method, use \"add Issue\" add the issues you found to the Issue List" + "\n"),
                 new H4("Step 3: " + "\n"),
-                new H4("Step 4: add the proposed solution you found using the improved method to the \"improvment backlog\" via \"add solution\"" + "\n"),
+                new H4("Step 4: add the proposed solution you found using the improved method to the \"improvement backlog\" via \"add solution\"" + "\n"),
                 new H4("Step 5: " + "\n")
 
         );
