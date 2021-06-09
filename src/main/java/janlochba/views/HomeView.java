@@ -75,19 +75,4 @@ public class HomeView extends Div {
         return wrapper;
     }
 
-    private Component buttonLayout() {
-
-        HorizontalLayout buttonLayout = new HorizontalLayout();
-
-        buttonLayout.add(
-                toAddIssue,
-                toAddSolution,
-                toAnalysis,
-                toImprove
-        );
-
-        return buttonLayout;
-    }
-
-
 }
