@@ -20,7 +20,6 @@ public class HomeView extends Div {
     Button toAnalysis = new Button("go to Analysis");
     Button toImprove = new Button("Improve your Issue");
 
-
     public HomeView() {
 
         addClassName("home-view");
@@ -35,35 +34,35 @@ public class HomeView extends Div {
         toAnalysis.setThemeName("primary");
         toImprove.setThemeName("primary");
 
-
-        // Komponenten der View
         add(
                 new H1("Welcome to nav42!"),
                 new Hr(),
-                new H3(""),
-                new H3("Here you will find a short step-by-step guide on how to use this prototype."),
+                new H3("\n" + "Here you will find a short step-by-step guide on how to use this prototype."),
                 bodyLayout(),
                 new Hr()
         );
 
     }
 
-
     private Component bodyLayout() {
         HorizontalLayout wrapper = new HorizontalLayout();
         VerticalLayout text = new VerticalLayout();
         VerticalLayout buttons = new VerticalLayout();
 
-        // Text zu ende einfügen
         text.add(
-                new H4("Step 1: go \"to analysis\" page and get a method to analyze your system / project" + "\n"),
-                new H4("Step 2: after you used the recommended analyze method, use \"add Issue\" add the issues you found to the Issue List" + "\n"),
-                new H4("Step 3: " + "\n"),
+                new H4("Step 1: start with \"go to analysis\" and get a method to analyze your system or project to find possible Issues" + "\n"),
+                new H4("Step 2: after you used the recommended analyze method, go on to \"add Issue\" and add the issues you found to the Issue List" + "\n"),
+                new H4("Step 3: go to the \"Issue List\" and select the \"issue\" you want to improve and click the \"Improve your Issue\" button." + "\n"),
                 new H4("Step 4: add the proposed solution you found using the improved method to the \"improvement backlog\" via \"add solution\"" + "\n"),
-                new H4("Step 5: " + "\n")
+                new H4("Try to implement your proposed solution and eliminate the \"issue\". If you have succeeded in doing this, start the process again." + "\n" + "Try to incorporate this process into your daily business to ensure that your system always maintains or improves its quality." + "\n")
 
         );
-        // Buttons auf die selbe größe setzen
+
+        toAnalysis.setWidth("200px");
+        toAddIssue.setWidth("200px");
+        toImprove.setWidth("200px");
+        toAddSolution.setWidth("200px");
+
         buttons.add(
                 toAnalysis,
                 toAddIssue,

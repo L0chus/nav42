@@ -1,6 +1,7 @@
 package janlochba.views;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
@@ -36,25 +37,39 @@ public class RecImproveView extends VerticalLayout {
     private List<RecImproveDTO> improveList = new ArrayList<>();
     private ListDataProvider<RecImproveDTO> dataProvider = new ListDataProvider<>(improveList);
 
+
     public RecImproveView(ManageRecImproveControl improveControl) {
         this.improveControl = improveControl;
         createGridTable();
+
 
         add(
                 new H1("Improvement Method for your Issue"),
                 buildForm(),
                 new H3(" we recommend you the following Method: "),
-                createGridTable()
+                createGridTable(),
+                buttonLayout()
         );
 
+    }
+
+    private Component buttonLayout() {
+        HorizontalLayout buttonLayout = new HorizontalLayout();
+        Button toAddSolution = new Button("add new Solution");
+        toAddSolution.addClickListener(event -> UI.getCurrent().navigate("add-Solution"));
+        toAddSolution.setThemeName("primary");
+        buttonLayout.add(toAddSolution);
+        return buttonLayout;
     }
 
     private Component createGridTable() {
         Grid<RecImproveDTO> improveGrid = new Grid<>();
 
+        improveGrid.setWidth("75%");
+
         improveGrid.setDataProvider(dataProvider);
-        improveGrid.addColumn(RecImproveDTO::getName).setHeader("Improve Method:");
-        improveGrid.addColumn(RecImproveDTO::getDescription).setHeader("More Information under:");
+        improveGrid.addColumn(RecImproveDTO::getName).setHeader("Improve Method:").setWidth("25%");
+        improveGrid.addColumn(RecImproveDTO::getDescription).setHeader("More Information under:").setWidth("75%");
 
         return improveGrid;
     }
@@ -76,8 +91,8 @@ public class RecImproveView extends VerticalLayout {
         comBox3.put("Documentation", List.of("improve", "expand"));
 
         ComboBox<String> typSelect = new ComboBox<>("Issue Typ", typOfIssue.keySet());
-        ComboBox<String> boxSelect = new ComboBox<>("box1", emptyList());
-        ComboBox<String> box2Select = new ComboBox<>("box2", emptyList());
+        ComboBox<String> boxSelect = new ComboBox<>("Category", emptyList());
+        ComboBox<String> box2Select = new ComboBox<>("", emptyList());
 
         Button recImp = new Button("recommend Method");
         Div errorsLayout = new Div();

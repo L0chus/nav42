@@ -21,7 +21,7 @@ public class IssueListView extends Div {
 
     private final List<IssueDTO> issueList;
     private final Button addIssue = new Button("add new Issue");
-    private final Button toAnalysis = new Button("go to Analysis");
+    private final Button toImprove = new Button("Improve your Issue");
     private final Grid<IssueDTO> grid = new Grid<>();
 
     public IssueListView(ManageIssueControl issueControl) {
@@ -42,23 +42,15 @@ public class IssueListView extends Div {
         ListDataProvider<IssueDTO> dataProvider = new ListDataProvider<>(issueList);
 
         grid.setDataProvider(dataProvider);
-
-        Grid.Column<IssueDTO> idColumn = grid.addColumn(IssueDTO::getId).setHeader("ID").setKey("id");
-        Grid.Column<IssueDTO> nameColumn = grid.addColumn(IssueDTO::getName).setHeader("Issue").setKey("name");
-        Grid.Column<IssueDTO> descriptionColumn = grid.addColumn(IssueDTO::getDescription).setHeader("Description").setKey("description");
-        Grid.Column<IssueDTO> typColumn = grid.addColumn(IssueDTO::getTyp).setHeader("Issue Typ").setKey("typ");
-        Grid.Column<IssueDTO> minValueColumn = grid.addColumn(IssueDTO::getMinValue).setHeader("min Value in €").setKey("minValue");
-        Grid.Column<IssueDTO> maxValueColumn = grid.addColumn(IssueDTO::getMaxValue).setHeader("max Value in €").setKey("maxValue");
-
         grid.setWidth("100%");
-        grid.getColumnByKey("id").setFlexGrow(0).setWidth("50px");
-        grid.getColumnByKey("name").setFlexGrow(0).setWidth("15%");
-        grid.getColumnByKey("description").setFlexGrow(0).setWidth("35%");
-        grid.getColumnByKey("typ").setFlexGrow(0).setWidth("25%");
-        grid.getColumnByKey("minValue").setFlexGrow(0).setWidth("10%");
-        grid.getColumnByKey("maxValue").setFlexGrow(0).setWidth("10%");
-
         grid.setSelectionMode(Grid.SelectionMode.SINGLE);
+
+        Grid.Column<IssueDTO> idColumn = grid.addColumn(IssueDTO::getId).setHeader("ID").setKey("id").setWidth("50px");
+        Grid.Column<IssueDTO> nameColumn = grid.addColumn(IssueDTO::getName).setHeader("Issue").setKey("name").setWidth("20%");
+        Grid.Column<IssueDTO> descriptionColumn = grid.addColumn(IssueDTO::getDescription).setHeader("Description").setKey("description").setWidth("30%");
+        Grid.Column<IssueDTO> typColumn = grid.addColumn(IssueDTO::getTyp).setHeader("Issue Typ").setKey("typ").setWidth("25%").setWidth("20%");
+        Grid.Column<IssueDTO> minValueColumn = grid.addColumn(IssueDTO::getMinValue).setHeader("min Value in €").setKey("minValue").setWidth("10%");
+        Grid.Column<IssueDTO> maxValueColumn = grid.addColumn(IssueDTO::getMaxValue).setHeader("max Value in €").setKey("maxValue").setWidth("10%");
 
         return grid;
     }
@@ -69,14 +61,14 @@ public class IssueListView extends Div {
         buttonLayout.addClassName("button-layout");
 
         addIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
-        toAnalysis.addClickListener(event -> UI.getCurrent().navigate("RecAnalysis"));
+        toImprove.addClickListener(event -> UI.getCurrent().navigate("RecImprove"));
 
 
         addIssue.setThemeName("primary");
-        toAnalysis.setThemeName("primary");
+        toImprove.setThemeName("primary");
 
         buttonLayout.add(
-                addIssue, toAnalysis);
+                addIssue, toImprove);
         return buttonLayout;
     }
 

@@ -22,7 +22,7 @@ public class ImprovementBacklogView extends Div {
 
     private final List<SolutionDTO> improvementBacklog;
     private final Button addSolution = new Button("add new Solution");
-    private final Button toImprove = new Button("Improve your Issue");
+    private final Button toAnalysis = new Button("go to Analysis");
 
 
     public ImprovementBacklogView(ManageSolutionControl solutionControl) {
@@ -46,18 +46,13 @@ public class ImprovementBacklogView extends Div {
         ListDataProvider<SolutionDTO> dataProvider = new ListDataProvider<>(improvementBacklog);
         grid.setDataProvider(dataProvider);
 
-        Grid.Column<SolutionDTO> idColumn = grid.addColumn(SolutionDTO::getId).setHeader("ID").setKey("id");
-        Grid.Column<SolutionDTO> nameColumn = grid.addColumn(SolutionDTO::getName).setHeader("Solution").setKey("name");
-        Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description").setKey("description");
-        Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost in €").setKey("minCost");
-        Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost in €").setKey("maxCost");
+        Grid.Column<SolutionDTO> idColumn = grid.addColumn(SolutionDTO::getId).setHeader("ID").setKey("id").setWidth("75px");
+        Grid.Column<SolutionDTO> nameColumn = grid.addColumn(SolutionDTO::getName).setHeader("Solution").setKey("name").setWidth("10%");
+        Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description").setKey("description").setWidth("45%");
+        Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost in €").setKey("minCost").setWidth("20%");
+        Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost in €").setKey("maxCost").setWidth("20%");
 
         grid.setWidth("75%");
-        grid.getColumnByKey("id").setFlexGrow(0).setWidth("75px");
-        grid.getColumnByKey("name").setFlexGrow(0).setWidth("10%");
-        grid.getColumnByKey("description").setFlexGrow(0).setWidth("45%");
-        grid.getColumnByKey("minCost").setFlexGrow(0).setWidth("20%");
-        grid.getColumnByKey("maxCost").setFlexGrow(0).setWidth("20%");
 
         return grid;
     }
@@ -67,15 +62,15 @@ public class ImprovementBacklogView extends Div {
         buttonLayout.addClassName("button-layout");
 
         addSolution.setThemeName("primary");
-        toImprove.setThemeName("primary");
+        toAnalysis.setThemeName("primary");
 
         addSolution.addClickListener(event -> UI.getCurrent().navigate("add-Solution"));
-        toImprove.addClickListener(event -> UI.getCurrent().navigate("RecImprove"));
+        toAnalysis.addClickListener(event -> UI.getCurrent().navigate("RecAnalysis"));
 
 
         buttonLayout.add(
                 addSolution,
-                toImprove
+                toAnalysis
         );
 
 

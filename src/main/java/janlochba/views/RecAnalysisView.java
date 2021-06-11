@@ -1,6 +1,7 @@
 package janlochba.views;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.grid.Grid;
@@ -25,16 +26,23 @@ public class RecAnalysisView extends VerticalLayout {
     private String input2;
     private ManageRecAnalysisControl analysisControl;
 
+    private Button toAddIssue = new Button("add new Issue");
+
     private List<RecAnalysisDTO> analysisList = new ArrayList<>();
     private ListDataProvider<RecAnalysisDTO> dataProvider = new ListDataProvider<>(analysisList);
+
 
     public RecAnalysisView(ManageRecAnalysisControl analysisControl) {
         this.analysisControl = analysisControl;
 
+        toAddIssue.setThemeName("primary");
+
+        toAddIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
         add(
                 new H1("Analyze to find new Issues"),
                 buildForm(),
-                createGridTable()
+                createGridTable(),
+                toAddIssue
         );
 
     }
@@ -43,8 +51,11 @@ public class RecAnalysisView extends VerticalLayout {
         Grid<RecAnalysisDTO> analysisGrid = new Grid<>();
 
         analysisGrid.setDataProvider(dataProvider);
-        analysisGrid.addColumn(RecAnalysisDTO::getName).setHeader("Analysis Method:");
-        analysisGrid.addColumn(RecAnalysisDTO::getDescription).setHeader("More Information under:");
+        analysisGrid.addColumn(RecAnalysisDTO::getName).setHeader("Analysis Method:").setKey("name").setWidth("25%");
+        analysisGrid.addColumn(RecAnalysisDTO::getDescription).setHeader("More Information under:").setKey("description").setWidth("75%");
+
+        analysisGrid.setWidth("75%");
+
 
         return analysisGrid;
     }

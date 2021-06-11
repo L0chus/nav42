@@ -7,6 +7,7 @@ import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Hr;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -34,19 +35,25 @@ public class addIssueView extends Div {
 
 
     public addIssueView(ManageIssueControl issueControl) {
+
         addClassName("add-Issue-view");
-        add(createTitle());
-        add(createFormLayout());
-        add(createButtonLayout());
+
+        add(
+                new H1("add Issue"),
+                new Hr(),
+                createFormLayout(),
+                new Hr(),
+                createButtonLayout()
+        );
 
         binder.bindInstanceFields(this);
         clearForm();
 
         binder.forField(issueTyp).asRequired("Issue Typ").bind("typ");
         binder.forField(name).asRequired("Issue name").bind("name");
-        binder.forField(description).asRequired("Description").bind("description");
         binder.forField(minValue).asRequired("min Value").bind("minValue");
         binder.forField(maxValue).asRequired("max Value").bind("maxValue");
+        binder.forField(description).asRequired("Description").bind("description");
 
         addIssue.addClickListener(click -> validateAndSave());
 
@@ -64,17 +71,19 @@ public class addIssueView extends Div {
         }
     }
 
-    private Component createTitle() {
-        return new H1("add Issue");
-    }
-
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
         issueTyp.setItems("Architecture and Code Structure", "Analyzability & Evaluability", "Technical Infrastructure", "Processes and Organization");
         issueTyp.setPlaceholder("please select");
-        description.getStyle().set("maxHeight", "200%");
         description.setPlaceholder("enter description here...");
-        formLayout.add(name, issueTyp, description, minValue, maxValue);
+
+        formLayout.add(
+                name,
+                issueTyp,
+                minValue,
+                maxValue,
+                description);
+
         return formLayout;
     }
 
