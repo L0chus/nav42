@@ -2,6 +2,7 @@ package janlochba.views;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
@@ -13,7 +14,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import janlochba.control.ManageIssueControl;
 import janlochba.control.ManageSolutionControl;
+import janlochba.dto.impl.IssueDTOImpl;
 import janlochba.dto.impl.SolutionDTOImpl;
 
 @Route(value = "add-Solution", layout = MainView.class)
@@ -25,6 +28,8 @@ public class addSolutionView extends Div {
     private final TextField description = new TextField("Description");
     private final NumberField minCost = new NumberField("min Cost");
     private final NumberField maxCost = new NumberField("max Cost");
+    private final ComboBox<IssueDTOImpl> issueId = new ComboBox<>("Issue Id");
+    private final TextField issueName = new TextField("Issue Name:");
 
     private final Button tip = new Button("Show Tip");
 
@@ -33,7 +38,7 @@ public class addSolutionView extends Div {
 
     private final Binder<SolutionDTOImpl> binder = new Binder<>(SolutionDTOImpl.class);
 
-    public addSolutionView(ManageSolutionControl control) {
+    public addSolutionView(ManageSolutionControl control, ManageIssueControl issueControl) {
         addClassName("add-Solution-view");
 
 
@@ -46,6 +51,7 @@ public class addSolutionView extends Div {
 
         binder.bindInstanceFields(this);
         clearForm();
+
         binder.forField(name).asRequired("Solution").bind("name");
         binder.forField(description).asRequired("Description").bind("description");
         binder.forField(minCost).asRequired("min Cost").bind("minCost");
@@ -62,7 +68,23 @@ public class addSolutionView extends Div {
 
     private Component formLayout() {
         FormLayout formLayout = new FormLayout();
-        formLayout.add(name, description, minCost, maxCost);
+
+        name.setPlaceholder("name your Solution");
+        description.setPlaceholder("enter your Solution description");
+        minCost.setPlaceholder("estimate the minimal cost of your Issue");
+        maxCost.setPlaceholder("estimate the maximum cost of your Issue");
+        issueId.setPlaceholder("select an Issue");
+        issueName.setPlaceholder("...");
+
+        formLayout.add(
+                name,
+                description,
+                minCost,
+                maxCost,
+                issueId,
+                issueName
+        );
+        
         return formLayout;
     }
 

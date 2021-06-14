@@ -41,7 +41,7 @@ public class ImprovementBacklogView extends Div {
         );
 
         delete.addClickListener(event -> {
-            // solutionControl.delete(); gucken wie man da das ausgewählte Element übergibt
+            
         });
     }
 
