@@ -104,6 +104,7 @@ public class RecAnalysisView extends VerticalLayout {
         formLayout.setDefaultVerticalComponentAlignment(Alignment.BASELINE);
         wrapperLayout.setWidth("100%");
 
+        // Empfehlung der Analyse Methode durch DB Abruf mit den 2 Parametern
         recAnalysis.addClickListener(event -> {
             analysisList.clear();
             analysisList.addAll(analysisControl.recImprovement(input, input2));

@@ -6,9 +6,11 @@ import janlochba.entity.Solution;
 import janlochba.repository.SolutionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 @Component
 public class ManageSolutionControl {
 
@@ -25,7 +27,8 @@ public class ManageSolutionControl {
         return repository.findTop15ByOrderByMaxCostDesc();
     }
 
-   /* public List<SolutionDTO> delete(int id) {
-        return repository.deleteById(id);
-    }*/
+    public void delete(Solution solution) {
+        repository.delete(solution);
+    }
+
 }

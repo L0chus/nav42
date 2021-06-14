@@ -7,7 +7,6 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
@@ -67,15 +66,17 @@ public class IssueListView extends Div {
 
         //hier soll der Typ des Issues in RecImprove Combobox übergeben werden
         toImprove.addClickListener(event -> {
-            Object typ = grid.getSelectionModel().getSelectedItems();
-            Notification.show(typ.toString());
+
         });
 
         addIssue.setThemeName("primary");
         toImprove.setThemeName("primary");
 
         buttonLayout.add(
-                addIssue, toImprove);
+                addIssue,
+                toImprove
+        );
+
         return buttonLayout;
     }
 

@@ -40,6 +40,9 @@ public class ImprovementBacklogView extends Div {
 
         );
 
+        delete.addClickListener(event -> {
+            // solutionControl.delete(); gucken wie man da das ausgewählte Element übergibt
+        });
     }
 
     private Component createGridTable() {
@@ -59,10 +62,6 @@ public class ImprovementBacklogView extends Div {
 
 
         return grid;
-    }
-
-    private void delete() {
-
     }
 
     private Component createButtonLayout() {

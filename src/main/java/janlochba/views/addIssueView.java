@@ -99,9 +99,14 @@ public class addIssueView extends Div {
 
         binder.addStatusChangeListener(event -> addIssue.setEnabled(binder.isValid()));
         addIssue.setEnabled(false);
+
         cancel.addClickListener(e -> clearForm());
-        buttonLayout.add(addIssue);
-        buttonLayout.add(cancel);
+
+        buttonLayout.add(
+                addIssue,
+                cancel
+        );
+
         return buttonLayout;
     }
 

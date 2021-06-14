@@ -32,16 +32,15 @@ public class RecImproveView extends VerticalLayout {
     private String input1;
     private String input2;
     private String input3;
-    private ManageRecImproveControl improveControl;
+    private final ManageRecImproveControl improveControl;
 
-    private List<RecImproveDTO> improveList = new ArrayList<>();
-    private ListDataProvider<RecImproveDTO> dataProvider = new ListDataProvider<>(improveList);
+    private final List<RecImproveDTO> improveList = new ArrayList<>();
+    private final ListDataProvider<RecImproveDTO> dataProvider = new ListDataProvider<>(improveList);
 
 
     public RecImproveView(ManageRecImproveControl improveControl) {
         this.improveControl = improveControl;
         createGridTable();
-
 
         add(
                 new H1("Improvement Method for your Issue"),
@@ -63,6 +62,7 @@ public class RecImproveView extends VerticalLayout {
     }
 
     private Component createGridTable() {
+
         Grid<RecImproveDTO> improveGrid = new Grid<>();
 
         improveGrid.setWidth("75%");
@@ -73,7 +73,6 @@ public class RecImproveView extends VerticalLayout {
 
         return improveGrid;
     }
-
 
     private Component buildForm() {
         Map<String, List<String>> typOfIssue = new HashMap<>();
@@ -138,6 +137,8 @@ public class RecImproveView extends VerticalLayout {
             });
 
         });
+
+        // Empfehlung der Improvement Methode durch DB Abruf mit den 3 Parametern
         recImp.addClickListener(event -> {
             improveList.clear();
             improveList.addAll(improveControl.recImprovement(input1, input2, input3));
