@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface SolutionRepository extends JpaRepository<Solution, String> {
+public interface SolutionRepository extends JpaRepository<Solution, Integer> {
 
     List<SolutionDTO> findTop15ByOrderByMaxCostDesc();
 
-    List<SolutionDTO> deleteById(Integer id);
+    //List<SolutionDTO> deleteById(Integer id);
 }
