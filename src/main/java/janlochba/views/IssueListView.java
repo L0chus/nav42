@@ -6,6 +6,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
@@ -20,7 +22,7 @@ import java.util.List;
 public class IssueListView extends Div {
 
     private final List<IssueDTO> issueList;
-    private final Button addIssue = new Button("add new Issue");
+    private final Button addIssue = new Button("add new Issue", VaadinIcon.FILE_ADD.create());
     private final Button toImprove = new Button("Improve your Issue");
     private final Grid<IssueDTO> grid = new Grid<>();
 
@@ -36,8 +38,8 @@ public class IssueListView extends Div {
         );
     }
 
-    private Component createGridTable() {
 
+    private Component createGridTable() {
 
         ListDataProvider<IssueDTO> dataProvider = new ListDataProvider<>(issueList);
 
@@ -63,6 +65,11 @@ public class IssueListView extends Div {
         addIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
         toImprove.addClickListener(event -> UI.getCurrent().navigate("RecImprove"));
 
+        //hier soll der Typ des Issues in RecImprove Combobox übergeben werden
+        toImprove.addClickListener(event -> {
+            Object typ = grid.getSelectionModel().getSelectedItems();
+            Notification.show(typ.toString());
+        });
 
         addIssue.setThemeName("primary");
         toImprove.setThemeName("primary");

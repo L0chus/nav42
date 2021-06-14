@@ -15,13 +15,17 @@ public class ManageSolutionControl {
     @Autowired
     private SolutionRepository repository;
 
-    public void createSolution(SolutionDTO solutionDTO){
+    public void createSolution(SolutionDTO solutionDTO) {
 
         Solution solutionEntity = SolutionFactory.createSolution(solutionDTO);
         this.repository.save(solutionEntity);
     }
 
-    public List<SolutionDTO> readAllSolutions(){
+    public List<SolutionDTO> readAllSolutions() {
         return repository.findTop15ByOrderByMaxCostDesc();
+    }
+
+    public List<SolutionDTO> delete(int id) {
+        return repository.deleteById(id);
     }
 }

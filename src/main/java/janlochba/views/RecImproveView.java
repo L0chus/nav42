@@ -94,6 +94,10 @@ public class RecImproveView extends VerticalLayout {
         ComboBox<String> boxSelect = new ComboBox<>("Category", emptyList());
         ComboBox<String> box2Select = new ComboBox<>("", emptyList());
 
+        typSelect.setWidth("20%");
+        boxSelect.setWidth("20%");
+        box2Select.setWidth("20%");
+
         Button recImp = new Button("recommend Method");
         Div errorsLayout = new Div();
 

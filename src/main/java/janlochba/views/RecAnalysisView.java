@@ -69,9 +69,11 @@ public class RecAnalysisView extends VerticalLayout {
 
         ComboBox<String> box1 = new ComboBox<>("looking at", lookingAt.keySet());
         box1.setPlaceholder("please select");
+        box1.setWidth("20%");
 
         ComboBox<String> box2 = new ComboBox<>("especially on", Collections.emptyList());
         box2.setPlaceholder("please select");
+        box2.setWidth("20%");
 
         Button recAnalysis = new Button("get a Method");
         Div errorsLayout = new Div();

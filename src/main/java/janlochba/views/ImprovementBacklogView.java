@@ -6,6 +6,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
@@ -21,8 +22,9 @@ import java.util.List;
 public class ImprovementBacklogView extends Div {
 
     private final List<SolutionDTO> improvementBacklog;
-    private final Button addSolution = new Button("add new Solution");
+    private final Button addSolution = new Button("add new Solution", VaadinIcon.FILE_ADD.create());
     private final Button toAnalysis = new Button("go to Analysis");
+    private final Button delete = new Button("delete", VaadinIcon.TRASH.create());
 
 
     public ImprovementBacklogView(ManageSolutionControl solutionControl) {
@@ -46,15 +48,21 @@ public class ImprovementBacklogView extends Div {
         ListDataProvider<SolutionDTO> dataProvider = new ListDataProvider<>(improvementBacklog);
         grid.setDataProvider(dataProvider);
 
+        grid.setWidth("75%");
+        grid.setSelectionMode(Grid.SelectionMode.SINGLE);
+
         Grid.Column<SolutionDTO> idColumn = grid.addColumn(SolutionDTO::getId).setHeader("ID").setKey("id").setWidth("75px");
         Grid.Column<SolutionDTO> nameColumn = grid.addColumn(SolutionDTO::getName).setHeader("Solution").setKey("name").setWidth("10%");
         Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description").setKey("description").setWidth("45%");
         Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost in €").setKey("minCost").setWidth("20%");
         Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost in €").setKey("maxCost").setWidth("20%");
 
-        grid.setWidth("75%");
 
         return grid;
+    }
+
+    private void delete() {
+
     }
 
     private Component createButtonLayout() {
@@ -63,6 +71,7 @@ public class ImprovementBacklogView extends Div {
 
         addSolution.setThemeName("primary");
         toAnalysis.setThemeName("primary");
+        delete.setThemeName("primary");
 
         addSolution.addClickListener(event -> UI.getCurrent().navigate("add-Solution"));
         toAnalysis.addClickListener(event -> UI.getCurrent().navigate("RecAnalysis"));
@@ -70,9 +79,9 @@ public class ImprovementBacklogView extends Div {
 
         buttonLayout.add(
                 addSolution,
-                toAnalysis
+                toAnalysis,
+                delete
         );
-
 
         return buttonLayout;
     }
