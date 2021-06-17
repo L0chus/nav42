@@ -1,6 +1,9 @@
 package janlochba.dto.impl;
 
+import janlochba.dto.IssueDTO;
 import janlochba.dto.SolutionDTO;
+
+import java.util.List;
 
 public class SolutionDTOImpl implements SolutionDTO {
 
@@ -9,6 +12,7 @@ public class SolutionDTOImpl implements SolutionDTO {
     private String description;
     private Double minCost;
     private Double maxCost;
+    private List<IssueDTO> issues;
 
     //getter
     @Override
@@ -36,13 +40,18 @@ public class SolutionDTOImpl implements SolutionDTO {
         return maxCost;
     }
 
+    @Override
+    public List<IssueDTO> getIssues() {
+        return issues;
+    }
+
     //setter
 
-    public void setId(Integer id){
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -55,6 +64,10 @@ public class SolutionDTOImpl implements SolutionDTO {
     }
 
     public void setMaxCost(Double maxCost) {
-        this.maxCost=maxCost;
+        this.maxCost = maxCost;
+    }
+
+    public void setIssues(List<IssueDTO> issues) {
+        this.issues = issues;
     }
 }

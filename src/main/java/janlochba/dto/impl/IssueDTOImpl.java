@@ -42,6 +42,11 @@ public class IssueDTOImpl implements IssueDTO {
         return typ;
     }
 
+    @Override
+    public List<SolutionDTO> getSolutions() {
+        return solutions;
+    }
+
     //setter
 
     public void setId(Integer id){

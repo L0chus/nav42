@@ -4,7 +4,7 @@ import janlochba.dto.SolutionDTO;
 import janlochba.entity.Solution;
 
 public class SolutionFactory {
-    public static Solution createSolution(SolutionDTO solutionDTO){
+    public static Solution createSolution(SolutionDTO solutionDTO) {
 
         Solution solution = new Solution();
 
@@ -13,6 +13,14 @@ public class SolutionFactory {
         solution.setDescription(solutionDTO.getDescription());
         solution.setMinCost(solutionDTO.getMinCost());
         solution.setMaxCost(solutionDTO.getMaxCost());
+
+        List<Issue> issues = new ArrayList<>();
+
+        for (IssueDTO issueDTO : solutionDTO.getIssues()) {
+            issues.add(IssueFactory.createIssue(issueDTO));
+        }
+
+        solution.setIssues(issues);
 
         return solution;
     }

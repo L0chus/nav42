@@ -2,7 +2,6 @@ package janlochba.views;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
@@ -16,8 +15,11 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import janlochba.control.ManageIssueControl;
 import janlochba.control.ManageSolutionControl;
-import janlochba.dto.impl.IssueDTOImpl;
+import janlochba.dto.IssueDTO;
 import janlochba.dto.impl.SolutionDTOImpl;
+import org.vaadin.gatanaso.MultiselectComboBox;
+
+import java.util.stream.Collectors;
 
 @Route(value = "add-Solution", layout = MainView.class)
 @PageTitle("add-Solution")
@@ -28,17 +30,20 @@ public class addSolutionView extends Div {
     private final TextField description = new TextField("Description");
     private final NumberField minCost = new NumberField("min Cost");
     private final NumberField maxCost = new NumberField("max Cost");
-    private final ComboBox<IssueDTOImpl> issueId = new ComboBox<>("Issue Id");
-    private final TextField issueName = new TextField("Issue Name:");
+    private final MultiselectComboBox<IssueDTO> issueListMultiselectComboBox = new MultiselectComboBox<>();
+
 
     private final Button tip = new Button("Show Tip");
 
     private final Button save = new Button("add Solution");
     private final Button cancel = new Button("cancel");
 
+    private final ManageIssueControl issue;
+
     private final Binder<SolutionDTOImpl> binder = new Binder<>(SolutionDTOImpl.class);
 
-    public addSolutionView(ManageSolutionControl control, ManageIssueControl issueControl) {
+    public addSolutionView(ManageSolutionControl control, ManageIssueControl issue) {
+        this.issue = issue;
         addClassName("add-Solution-view");
 
 
@@ -52,10 +57,10 @@ public class addSolutionView extends Div {
         binder.bindInstanceFields(this);
         clearForm();
 
-        binder.forField(name).asRequired("Solution").bind("name");
-        binder.forField(description).asRequired("Description").bind("description");
-        binder.forField(minCost).asRequired("min Cost").bind("minCost");
-        binder.forField(maxCost).asRequired("max Cost").bind("maxCost");
+        binder.forField(name).asRequired().bind("name");
+        binder.forField(description).asRequired().bind("description");
+        binder.forField(minCost).asRequired().bind("minCost");
+        binder.forField(maxCost).asRequired().bind("maxCost");
 
         save.addClickListener(event -> {
 
@@ -73,18 +78,18 @@ public class addSolutionView extends Div {
         description.setPlaceholder("enter your Solution description");
         minCost.setPlaceholder("estimate the minimal cost of your Issue");
         maxCost.setPlaceholder("estimate the maximum cost of your Issue");
-        issueId.setPlaceholder("select an Issue");
-        issueName.setPlaceholder("...");
+        issueListMultiselectComboBox.setPlaceholder("select an Issue");
+        issueListMultiselectComboBox.setItemLabelGenerator(IssueDTO::getName);
+        issueListMultiselectComboBox.setItems(issue.readAllIssues());
 
         formLayout.add(
                 name,
                 description,
                 minCost,
                 maxCost,
-                issueId,
-                issueName
+                issueListMultiselectComboBox
         );
-        
+
         return formLayout;
     }
 

@@ -1,5 +1,7 @@
 package janlochba.dto;
 
+import java.util.List;
+
 public interface IssueDTO {
 
     public Integer getId();

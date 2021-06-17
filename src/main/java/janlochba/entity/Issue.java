@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table( name = "issue", schema = "nav42")
+@Table(name = "issue", schema = "nav42")
 public class Issue {
     private Integer id;
     private String name;

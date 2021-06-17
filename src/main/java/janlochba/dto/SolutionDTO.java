@@ -1,5 +1,7 @@
 package janlochba.dto;
 
+import java.util.List;
+
 public interface SolutionDTO {
 
     public Integer getId();
@@ -12,4 +14,5 @@ public interface SolutionDTO {
 
     public Double getMaxCost();
 
+    public List<IssueDTO> getIssues();
 }
