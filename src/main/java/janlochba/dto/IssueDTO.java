@@ -16,5 +16,6 @@ public interface IssueDTO {
 
     public String getTyp();
 
+    public List<SolutionDTO> getSolutions();
 
 }

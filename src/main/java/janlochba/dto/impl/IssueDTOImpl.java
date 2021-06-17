@@ -1,6 +1,9 @@
 package janlochba.dto.impl;
 
 import janlochba.dto.IssueDTO;
+import janlochba.dto.SolutionDTO;
+
+import java.util.List;
 
 public class IssueDTOImpl implements IssueDTO {
 
@@ -10,6 +13,7 @@ public class IssueDTOImpl implements IssueDTO {
     private Double minValue;
     private Double maxValue;
     private String typ;
+    private List<SolutionDTO> solutions;
 
     //getter
     @Override
@@ -49,11 +53,11 @@ public class IssueDTOImpl implements IssueDTO {
 
     //setter
 
-    public void setId(Integer id){
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -69,6 +73,12 @@ public class IssueDTOImpl implements IssueDTO {
         this.maxValue = maxValue;
     }
 
-    public void setTyp(String typ){ this.typ = typ; }
+    public void setTyp(String typ) {
+        this.typ = typ;
+    }
+
+    public void setSolutions(List<SolutionDTO> solutions) {
+        this.solutions = solutions;
+    }
 
 }

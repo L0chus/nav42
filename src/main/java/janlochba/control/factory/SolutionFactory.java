@@ -1,7 +1,12 @@
 package janlochba.control.factory;
 
+import janlochba.dto.IssueDTO;
 import janlochba.dto.SolutionDTO;
+import janlochba.entity.Issue;
 import janlochba.entity.Solution;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SolutionFactory {
     public static Solution createSolution(SolutionDTO solutionDTO) {

@@ -96,7 +96,17 @@ public class Issue {
         return Objects.hash(id, typ, name, description, minValue, maxValue);
     }
 
-    @ManyToMany
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
+    @JoinTable(name = "issue_to_solution",
+            schema = "nav42",
+            joinColumns = {@JoinColumn(name = "i_id")},
+            inverseJoinColumns = {@JoinColumn(name = "s_id")})
     public List<Solution> getSolutions() {
         return solutions;
     }

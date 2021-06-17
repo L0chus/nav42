@@ -46,7 +46,6 @@ public class addSolutionView extends Div {
         this.issue = issue;
         addClassName("add-Solution-view");
 
-
         add(
                 new H1("add Solution"),
                 formLayout(),
@@ -63,8 +62,12 @@ public class addSolutionView extends Div {
         binder.forField(maxCost).asRequired().bind("maxCost");
 
         save.addClickListener(event -> {
+            SolutionDTOImpl solutionDTO = binder.getBean();
+            solutionDTO.setIssues(issueListMultiselectComboBox.getValue().stream().collect(Collectors.toList()));
 
-            control.createSolution(binder.getBean());
+            // Check if Issues exist (issueListMultiselectComboBox.getValue() +  solutionDTO.getIssues())
+
+            control.createSolution(solutionDTO);
 
             Notification.show("successfully added to Improvement Backlog");
             clearForm();

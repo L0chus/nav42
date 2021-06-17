@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table( name = "solution", schema = "nav42")
+@Table(name = "solution", schema = "nav42")
 public class Solution {
     private Integer id;
     private String name;
@@ -84,7 +84,14 @@ public class Solution {
     }
 
 
-    @ManyToMany
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "solutions",
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            }
+    )
     public List<Issue> getIssues() {
         return issues;
     }
