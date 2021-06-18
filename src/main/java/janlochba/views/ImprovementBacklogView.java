@@ -50,20 +50,21 @@ public class ImprovementBacklogView extends Div {
     }
 
     private Component createGridTable() {
+
         Grid<SolutionDTO> grid = new Grid<>();
 
         ListDataProvider<SolutionDTO> dataProvider = new ListDataProvider<>(improvementBacklog);
-        grid.setDataProvider(dataProvider);
 
+        grid.setDataProvider(dataProvider);
         grid.setWidth("100%");
         grid.setSelectionMode(Grid.SelectionMode.SINGLE);
 
-        Grid.Column<SolutionDTO> idColumn = grid.addColumn(SolutionDTO::getId).setHeader("ID").setKey("id").setWidth("75px");
-        Grid.Column<SolutionDTO> nameColumn = grid.addColumn(SolutionDTO::getName).setHeader("Solution").setKey("name").setWidth("10%");
-        Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description").setKey("description").setWidth("20%");
+        Grid.Column<SolutionDTO> idColumn = grid.addColumn(SolutionDTO::getId).setHeader("ID").setKey("id").setWidth("50px");
+        Grid.Column<SolutionDTO> nameColumn = grid.addColumn(SolutionDTO::getName).setHeader("Solution").setKey("name").setWidth("20%");
+        Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description").setKey("description").setWidth("30%");
         Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost in €").setKey("minCost").setWidth("10%");
         Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost in €").setKey("maxCost").setWidth("10%");
-        Grid.Column<SolutionDTO> issues = grid.addColumn(SolutionDTO::getIssues).setHeader("related Issue").setKey("issues").setWidth("10%");
+        Grid.Column<SolutionDTO> issues = grid.addColumn(SolutionDTO::getIssues).setHeader("related Issue").setKey("issues").setWidth("25%");
 
         // currentID soll von dem ausgewählten Element der List gesetzt werden
         currentID = 10;

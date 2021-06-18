@@ -69,7 +69,7 @@ public class addSolutionView extends Div {
 
             control.createSolution(solutionDTO);
 
-            Notification.show("successfully added to Improvement Backlog");
+            Notification.show("successfully added Solution: " + name.getValue() + " to Improvement Backlog");
             clearForm();
         });
     }
