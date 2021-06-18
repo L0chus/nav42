@@ -81,6 +81,8 @@ public class addSolutionView extends Div {
         description.setPlaceholder("enter your Solution description");
         minCost.setPlaceholder("estimate the minimal cost of your Issue");
         maxCost.setPlaceholder("estimate the maximum cost of your Issue");
+
+        // Befüllen der MultiComboBox mit Issues
         issueListMultiselectComboBox.setPlaceholder("select an Issue");
         issueListMultiselectComboBox.setItemLabelGenerator(IssueDTO::getName);
         issueListMultiselectComboBox.setItems(issue.readAllIssues());

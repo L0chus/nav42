@@ -27,8 +27,12 @@ public class ManageSolutionControl {
         return repository.findTop15ByOrderByMaxCostDesc();
     }
 
-    /*public void delete() {
-        repository.delete();
-    }*/
+    public void delete(Integer id) {
+        repository.deleteById(id);
+    }
+
+    public void delete1(Solution solution) {
+        repository.delete(solution);
+    }
 
 }

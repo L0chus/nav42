@@ -9,5 +9,10 @@ import java.util.List;
 public interface SolutionRepository extends JpaRepository<Solution, Integer> {
 
     List<SolutionDTO> findTop15ByOrderByMaxCostDesc();
-    
+
+    @Override
+    void deleteById(Integer id);
+
+    @Override
+    void delete(Solution solution);
 }

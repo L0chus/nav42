@@ -38,7 +38,7 @@ public class RecImproveView extends VerticalLayout {
     private final ListDataProvider<RecImproveDTO> dataProvider = new ListDataProvider<>(improveList);
 
 
-    public RecImproveView(ManageRecImproveControl improveControl) {
+    public RecImproveView(ManageRecImproveControl improveControl, String typIssue) {
         this.improveControl = improveControl;
         createGridTable();
 
@@ -101,10 +101,12 @@ public class RecImproveView extends VerticalLayout {
         Div errorsLayout = new Div();
 
         recImp.setThemeName("primary");
-        recImp.setEnabled(false);
 
+        // Button recImp und ComboBoxen sperren
+        recImp.setEnabled(false);
         boxSelect.setEnabled(false);
         box2Select.setEnabled(false);
+
         typSelect.addValueChangeListener(e -> {
             String typ = e.getValue();
             input1 = e.getValue();

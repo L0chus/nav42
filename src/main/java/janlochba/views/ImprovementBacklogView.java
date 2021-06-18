@@ -26,6 +26,8 @@ public class ImprovementBacklogView extends Div {
     private final Button toAnalysis = new Button("go to Analysis");
     private final Button delete = new Button("delete", VaadinIcon.TRASH.create());
 
+    private Integer currentID;
+
 
     public ImprovementBacklogView(ManageSolutionControl solutionControl) {
 
@@ -40,8 +42,10 @@ public class ImprovementBacklogView extends Div {
 
         );
 
+        // delete by ID funktioniert, es muss nur noch der Refresh funktionieren
         delete.addClickListener(event -> {
-            
+            solutionControl.delete(currentID);
+            UI.getCurrent().navigate("Improvement_Backlog");
         });
     }
 
@@ -51,15 +55,18 @@ public class ImprovementBacklogView extends Div {
         ListDataProvider<SolutionDTO> dataProvider = new ListDataProvider<>(improvementBacklog);
         grid.setDataProvider(dataProvider);
 
-        grid.setWidth("75%");
+        grid.setWidth("100%");
         grid.setSelectionMode(Grid.SelectionMode.SINGLE);
 
         Grid.Column<SolutionDTO> idColumn = grid.addColumn(SolutionDTO::getId).setHeader("ID").setKey("id").setWidth("75px");
         Grid.Column<SolutionDTO> nameColumn = grid.addColumn(SolutionDTO::getName).setHeader("Solution").setKey("name").setWidth("10%");
-        Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description").setKey("description").setWidth("45%");
-        Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost in €").setKey("minCost").setWidth("20%");
-        Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost in €").setKey("maxCost").setWidth("20%");
+        Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description").setKey("description").setWidth("20%");
+        Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost in €").setKey("minCost").setWidth("10%");
+        Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost in €").setKey("maxCost").setWidth("10%");
+        Grid.Column<SolutionDTO> issues = grid.addColumn(SolutionDTO::getIssues).setHeader("related Issue").setKey("issues").setWidth("10%");
 
+        // currentID soll von dem ausgewählten Element der List gesetzt werden
+        currentID = 10;
 
         return grid;
     }
