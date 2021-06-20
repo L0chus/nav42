@@ -17,9 +17,12 @@ public class ManageSolutionControl {
     @Autowired
     private SolutionRepository repository;
 
+    @Autowired
+    private SolutionFactory solutionFactory;
+
     public void createSolution(SolutionDTO solutionDTO) {
 
-        Solution solutionEntity = SolutionFactory.createSolution(solutionDTO);
+        Solution solutionEntity = solutionFactory.createSolution(solutionDTO);
         this.repository.save(solutionEntity);
     }
 

@@ -15,6 +15,7 @@ import janlochba.control.ManageSolutionControl;
 import janlochba.dto.SolutionDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 @Route(value = "Improvement_Backlog", layout = MainView.class)
 @PageTitle("Improvement Backlog")
@@ -25,6 +26,8 @@ public class ImprovementBacklogView extends Div {
     private final Button addSolution = new Button("add new Solution", VaadinIcon.FILE_ADD.create());
     private final Button toAnalysis = new Button("go to Analysis");
     private final Button delete = new Button("delete", VaadinIcon.TRASH.create());
+
+    private Grid<SolutionDTO> grid;
 
     private Integer currentID;
 
@@ -44,14 +47,18 @@ public class ImprovementBacklogView extends Div {
 
         // delete by ID funktioniert, es muss nur noch der Refresh funktionieren
         delete.addClickListener(event -> {
-            solutionControl.delete(currentID);
-            UI.getCurrent().navigate("Improvement_Backlog");
+            Optional<SolutionDTO> firstAsOptional = grid.getSelectedItems().stream().findFirst();
+
+            if (firstAsOptional.isPresent()) {
+                solutionControl.delete(firstAsOptional.get().getId());
+                UI.getCurrent().getPage().reload();
+            }
         });
     }
 
     private Component createGridTable() {
 
-        Grid<SolutionDTO> grid = new Grid<>();
+        grid = new Grid<>();
 
         ListDataProvider<SolutionDTO> dataProvider = new ListDataProvider<>(improvementBacklog);
 
@@ -64,7 +71,7 @@ public class ImprovementBacklogView extends Div {
         Grid.Column<SolutionDTO> descriptionColumn = grid.addColumn(SolutionDTO::getDescription).setHeader("Description").setKey("description").setWidth("30%");
         Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost in €").setKey("minCost").setWidth("10%");
         Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost in €").setKey("maxCost").setWidth("10%");
-        Grid.Column<SolutionDTO> issues = grid.addColumn(SolutionDTO::getIssues).setHeader("related Issue").setKey("issues").setWidth("25%");
+        Grid.Column<SolutionDTO> issues = grid.addColumn(SolutionDTO::getIssuesAsString).setHeader("related Issue").setKey("issues").setWidth("25%");
 
         // currentID soll von dem ausgewählten Element der List gesetzt werden
         currentID = 10;

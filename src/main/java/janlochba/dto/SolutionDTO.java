@@ -15,4 +15,10 @@ public interface SolutionDTO {
     public Double getMaxCost();
 
     public List<IssueDTO> getIssues();
+
+    public default String getIssuesAsString() {
+        List<IssueDTO> issues = getIssues();
+
+        return String.join(", ", issues.stream().map(IssueDTO::getName).toList());
+    }
 }

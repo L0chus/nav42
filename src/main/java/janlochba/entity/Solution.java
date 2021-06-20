@@ -84,13 +84,15 @@ public class Solution {
     }
 
 
-    @ManyToMany(
+    @OneToMany(
             fetch = FetchType.EAGER,
-            mappedBy = "solutions",
+//            mappedBy = "solutions",
             cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    CascadeType.MERGE,
             }
+    )
+    @JoinTable(name = "solution_issues",
+            schema = "nav42"
     )
     public List<Issue> getIssues() {
         return issues;
