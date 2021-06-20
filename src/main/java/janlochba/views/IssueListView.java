@@ -10,11 +10,14 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.router.Route;
 import janlochba.control.ManageIssueControl;
 import janlochba.dto.IssueDTO;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Route(value = "Issue_List", layout = MainView.class)
 @PageTitle("Issue List")
@@ -62,12 +65,18 @@ public class IssueListView extends Div {
         buttonLayout.addClassName("button-layout");
 
         addIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
-        toImprove.addClickListener(event -> UI.getCurrent().navigate("RecImprove"));
+//        toImprove.addClickListener(event -> UI.getCurrent().navigate("RecImprove"));
 
         //hier soll der Typ des Issues in RecImprove Combobox übergeben werden
-        /*toImprove.addClickListener(event -> {
+        toImprove.addClickListener(event -> {
 
-        });*/
+            Optional<IssueDTO> firstAsOptional = grid.getSelectedItems().stream().findFirst();
+
+            if (firstAsOptional.isPresent()) {
+                UI.getCurrent().navigate("RecImprove", QueryParameters.simple(Map.of("type", firstAsOptional.get().getTyp())));
+            }
+        });
+
 
         addIssue.setThemeName("primary");
         toImprove.setThemeName("primary");

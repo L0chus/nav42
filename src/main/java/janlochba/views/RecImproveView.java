@@ -11,8 +11,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.*;
 import janlochba.control.ManageRecImproveControl;
 import janlochba.dto.RecImproveDTO;
 
@@ -25,7 +24,7 @@ import static java.util.Collections.emptyList;
 
 @Route(value = "RecImprove", layout = MainView.class)
 @PageTitle("Improve")
-public class RecImproveView extends VerticalLayout {
+public class RecImproveView extends VerticalLayout implements HasUrlParameter<String> {
 
     private List<RecImproveDTO> recImproveMethod;
 
@@ -37,6 +36,17 @@ public class RecImproveView extends VerticalLayout {
     private final List<RecImproveDTO> improveList = new ArrayList<>();
     private final ListDataProvider<RecImproveDTO> dataProvider = new ListDataProvider<>(improveList);
 
+    private ComboBox<String> typSelect;
+
+    @Override
+    public void setParameter(BeforeEvent event, @OptionalParameter String parameter) {
+        Location location = event.getLocation();
+        QueryParameters queryParameters = location.getQueryParameters();
+
+        String type = queryParameters.getParameters().get("type").get(0);
+
+        typSelect.setValue(type);
+    }
 
     public RecImproveView(ManageRecImproveControl improveControl) { //, String typIssue
         this.improveControl = improveControl;
@@ -89,7 +99,7 @@ public class RecImproveView extends VerticalLayout {
         comBox3.put("change", List.of("hardware", "software"));
         comBox3.put("Documentation", List.of("improve", "expand"));
 
-        ComboBox<String> typSelect = new ComboBox<>("Issue Typ", typOfIssue.keySet());
+        typSelect = new ComboBox<>("Issue Typ", typOfIssue.keySet());
         ComboBox<String> boxSelect = new ComboBox<>("Category", emptyList());
         ComboBox<String> box2Select = new ComboBox<>("", emptyList());
 
