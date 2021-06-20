@@ -38,7 +38,7 @@ public class RecImproveView extends VerticalLayout {
     private final ListDataProvider<RecImproveDTO> dataProvider = new ListDataProvider<>(improveList);
 
 
-    public RecImproveView(ManageRecImproveControl improveControl, String typIssue) {
+    public RecImproveView(ManageRecImproveControl improveControl) { //, String typIssue
         this.improveControl = improveControl;
         createGridTable();
 

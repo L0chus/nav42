@@ -1,6 +1,7 @@
 package janlochba.views;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -61,6 +62,7 @@ public class addIssueView extends Div {
             issueControl.createIssue(binder.getBean());
             Notification.show("successfully added to Issue List");
             clearForm();
+            UI.getCurrent().navigate("Issue_List");
         });
 
     }

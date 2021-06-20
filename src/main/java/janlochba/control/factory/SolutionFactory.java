@@ -1,6 +1,5 @@
 package janlochba.control.factory;
 
-import janlochba.dto.IssueDTO;
 import janlochba.dto.SolutionDTO;
 import janlochba.entity.Issue;
 import janlochba.entity.Solution;
@@ -21,9 +20,9 @@ public class SolutionFactory {
 
         List<Issue> issues = new ArrayList<>();
 
-        for (IssueDTO issueDTO : solutionDTO.getIssues()) {
+       /* for (IssueDTO issueDTO : solutionDTO.getIssues()) {
             issues.add(IssueFactory.createIssue(issueDTO));
-        }
+        }*/
 
         solution.setIssues(issues);
 

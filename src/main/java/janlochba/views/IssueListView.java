@@ -65,9 +65,9 @@ public class IssueListView extends Div {
         toImprove.addClickListener(event -> UI.getCurrent().navigate("RecImprove"));
 
         //hier soll der Typ des Issues in RecImprove Combobox übergeben werden
-        toImprove.addClickListener(event -> {
+        /*toImprove.addClickListener(event -> {
 
-        });
+        });*/
 
         addIssue.setThemeName("primary");
         toImprove.setThemeName("primary");
