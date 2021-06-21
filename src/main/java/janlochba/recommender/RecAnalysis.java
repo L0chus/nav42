@@ -1,4 +1,4 @@
-package janlochba.control;
+package janlochba.recommender;
 
 import janlochba.dto.RecAnalysisDTO;
 import janlochba.repository.RecAnalysisRepository;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Component
-public class ManageRecAnalysisControl {
+public class RecAnalysis {
 
     @Autowired
     private RecAnalysisRepository repository;

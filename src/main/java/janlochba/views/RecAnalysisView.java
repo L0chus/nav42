@@ -12,8 +12,8 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import janlochba.control.ManageRecAnalysisControl;
 import janlochba.dto.RecAnalysisDTO;
+import janlochba.recommender.RecAnalysis;
 
 import java.util.*;
 
@@ -24,7 +24,7 @@ public class RecAnalysisView extends VerticalLayout {
 
     private String input;
     private String input2;
-    private final ManageRecAnalysisControl analysisControl;
+    private final RecAnalysis analysisControl;
 
     private final Button toAddIssue = new Button("add new Issue");
 
@@ -32,7 +32,7 @@ public class RecAnalysisView extends VerticalLayout {
     private final ListDataProvider<RecAnalysisDTO> dataProvider = new ListDataProvider<>(analysisList);
 
 
-    public RecAnalysisView(ManageRecAnalysisControl analysisControl) {
+    public RecAnalysisView(RecAnalysis analysisControl) {
         this.analysisControl = analysisControl;
 
         toAddIssue.setThemeName("primary");

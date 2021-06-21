@@ -18,7 +18,6 @@ public class HomeView extends Div {
     Button toAddIssue = new Button("add new Issue");
     Button toAddSolution = new Button("add new Solution");
     Button toAnalysis = new Button("go to Analysis");
-    Button toImprove = new Button("Improve your Issue");
     Button toIssueList = new Button("Issue List");
     Button toImprovementBacklog = new Button("Improvement Backlog");
 
@@ -29,14 +28,12 @@ public class HomeView extends Div {
         toAddIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
         toAddSolution.addClickListener(event -> UI.getCurrent().navigate("add-Solution"));
         toAnalysis.addClickListener(event -> UI.getCurrent().navigate("RecAnalysis"));
-        toImprove.addClickListener(event -> UI.getCurrent().navigate("RecImprove"));
         toIssueList.addClickListener(event -> UI.getCurrent().navigate("Issue_List"));
         toImprovementBacklog.addClickListener((event -> UI.getCurrent().navigate("Improvement_Backlog")));
 
         toAddIssue.setThemeName("primary");
         toAddSolution.setThemeName("primary");
         toAnalysis.setThemeName("primary");
-        toImprove.setThemeName("primary");
         toIssueList.setThemeName("primary");
         toImprovementBacklog.setThemeName("primary");
 
@@ -69,7 +66,6 @@ public class HomeView extends Div {
 
         toAnalysis.setWidth("200px");
         toAddIssue.setWidth("200px");
-        toImprove.setWidth("200px");
         toAddSolution.setWidth("200px");
         toIssueList.setWidth("200px");
         toImprovementBacklog.setWidth("200px");
@@ -78,7 +74,6 @@ public class HomeView extends Div {
                 toAnalysis,
                 toAddIssue,
                 toIssueList,
-                toImprove,
                 toAddSolution,
                 toImprovementBacklog
         );

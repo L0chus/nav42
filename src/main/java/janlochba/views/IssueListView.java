@@ -50,6 +50,7 @@ public class IssueListView extends Div {
             }
             // Falls nein, passiert nichts beim drücken des Delete Buttons
         });
+        
 
     }
 

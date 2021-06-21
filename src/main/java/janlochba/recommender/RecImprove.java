@@ -1,4 +1,4 @@
-package janlochba.control;
+package janlochba.recommender;
 
 import janlochba.dto.RecImproveDTO;
 import janlochba.repository.RecImproveRepository;
@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Component
-public class ManageRecImproveControl {
+public class RecImprove {
 
     @Autowired
     private RecImproveRepository repository;
