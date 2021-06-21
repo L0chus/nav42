@@ -29,8 +29,6 @@ public class ImprovementBacklogView extends Div {
 
     private Grid<SolutionDTO> grid;
 
-    private Integer currentID;
-
 
     public ImprovementBacklogView(ManageSolutionControl solutionControl) {
 
@@ -45,14 +43,16 @@ public class ImprovementBacklogView extends Div {
 
         );
 
-        // delete by ID funktioniert, es muss nur noch der Refresh funktionieren
+
         delete.addClickListener(event -> {
             Optional<SolutionDTO> firstAsOptional = grid.getSelectedItems().stream().findFirst();
-
+            // prüft ob ein Listenelement ausgewählt ist (isPresent (Methode aus Optional))
             if (firstAsOptional.isPresent()) {
+                // Falls ja wird das gewählte Eintrag gelöscht
                 solutionControl.delete(firstAsOptional.get().getId());
                 UI.getCurrent().getPage().reload();
             }
+            // Falls nein, passiert nichts beim drücken des Delete Buttons
         });
     }
 
@@ -72,9 +72,6 @@ public class ImprovementBacklogView extends Div {
         Grid.Column<SolutionDTO> min_costColumn = grid.addColumn(SolutionDTO::getMinCost).setHeader("min Cost in €").setKey("minCost").setWidth("10%");
         Grid.Column<SolutionDTO> max_costColumn = grid.addColumn(SolutionDTO::getMaxCost).setHeader("max Cost in €").setKey("maxCost").setWidth("10%");
         Grid.Column<SolutionDTO> issues = grid.addColumn(SolutionDTO::getIssuesAsString).setHeader("related Issue").setKey("issues").setWidth("25%");
-
-        // currentID soll von dem ausgewählten Element der List gesetzt werden
-        currentID = 10;
 
         return grid;
     }

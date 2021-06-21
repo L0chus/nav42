@@ -27,6 +27,7 @@ public class IssueListView extends Div {
     private final Button addIssue = new Button("add new Issue", VaadinIcon.FILE_ADD.create());
     private final Button toImprove = new Button("Improve your Issue");
     private final Grid<IssueDTO> grid = new Grid<>();
+    private final Button delete = new Button("delete", VaadinIcon.TRASH.create());
 
     public IssueListView(ManageIssueControl issueControl) {
         addClassName("issue-list-view");
@@ -36,8 +37,20 @@ public class IssueListView extends Div {
         add(
                 new H3("Issue List"),
                 createGridTable(),
-                createButtonLayout()
+                buttonLayout()
         );
+
+        delete.addClickListener(event -> {
+            Optional<IssueDTO> firstAsOptional = grid.getSelectedItems().stream().findFirst();
+            // prüft ob ein Listenelement ausgewählt ist (isPresent (Methode aus Optional))
+            if (firstAsOptional.isPresent()) {
+                // Falls ja wird das gewählte Eintrag gelöscht
+                issueControl.delete(firstAsOptional.get().getId());
+                UI.getCurrent().getPage().reload();
+            }
+            // Falls nein, passiert nichts beim drücken des Delete Buttons
+        });
+
     }
 
 
@@ -60,18 +73,16 @@ public class IssueListView extends Div {
     }
 
 
-    private Component createButtonLayout() {
+    private Component buttonLayout() {
         HorizontalLayout buttonLayout = new HorizontalLayout();
         buttonLayout.addClassName("button-layout");
 
         addIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
-//        toImprove.addClickListener(event -> UI.getCurrent().navigate("RecImprove"));
 
-        //hier soll der Typ des Issues in RecImprove Combobox übergeben werden
         toImprove.addClickListener(event -> {
 
             Optional<IssueDTO> firstAsOptional = grid.getSelectedItems().stream().findFirst();
-
+            //hier soll der Typ des Issues in RecImprove Combobox übergeben werden
             if (firstAsOptional.isPresent()) {
                 UI.getCurrent().navigate("RecImprove", QueryParameters.simple(Map.of("type", firstAsOptional.get().getTyp())));
             }
@@ -80,10 +91,12 @@ public class IssueListView extends Div {
 
         addIssue.setThemeName("primary");
         toImprove.setThemeName("primary");
+        delete.setThemeName("secondary");
 
         buttonLayout.add(
                 addIssue,
-                toImprove
+                toImprove,
+                delete
         );
 
         return buttonLayout;

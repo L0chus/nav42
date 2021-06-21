@@ -28,7 +28,7 @@ public class ManageIssueControl {
         return repository.findTop15ByOrderByMaxValueDesc();
     }
 
-    public void delete(Issue issue) {
-        repository.delete(issue);
+    public void delete(Integer id) {
+        repository.deleteById(id);
     }
 }

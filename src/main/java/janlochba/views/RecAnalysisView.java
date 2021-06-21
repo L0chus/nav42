@@ -26,7 +26,7 @@ public class RecAnalysisView extends VerticalLayout {
     private String input2;
     private final ManageRecAnalysisControl analysisControl;
 
-    private Button toAddIssue = new Button("add new Issue");
+    private final Button toAddIssue = new Button("add new Issue");
 
     private final List<RecAnalysisDTO> analysisList = new ArrayList<>();
     private final ListDataProvider<RecAnalysisDTO> dataProvider = new ListDataProvider<>(analysisList);

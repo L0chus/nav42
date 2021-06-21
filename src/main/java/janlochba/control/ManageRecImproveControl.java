@@ -19,5 +19,4 @@ public class ManageRecImproveControl {
         return repository.findByTypAndExtra1AndExtra2(typ, extra1, extra2);
     }
 
-
 }
