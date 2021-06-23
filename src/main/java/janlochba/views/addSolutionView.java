@@ -1,6 +1,7 @@
 package janlochba.views;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
@@ -64,13 +65,10 @@ public class addSolutionView extends Div {
         save.addClickListener(event -> {
             SolutionDTOImpl solutionDTO = binder.getBean();
             solutionDTO.setIssues(issueListMultiselectComboBox.getValue().stream().collect(Collectors.toList()));
-
-            // Check if Issues exist (issueListMultiselectComboBox.getValue() +  solutionDTO.getIssues())
-
             control.createSolution(solutionDTO);
-
             Notification.show("successfully added Solution: " + name.getValue() + " to Improvement Backlog");
             clearForm();
+            UI.getCurrent().navigate("Improvement_Backlog");
         });
     }
 

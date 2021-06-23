@@ -54,8 +54,8 @@ public class HomeView extends Div {
 
         text.add(
                 new H4("Step 1: start with \"go to analysis\" and get a method to analyze your system or project to find possible Issues" + "\n"),
-                new H4("Step 2: after you used the recommended analyze method, go on to \"add Issue\" and add the issues you found to the Issue List" + "\n"),
-                new H4("Step 3: go to the \"Issue List\" and select the \"issue\" you want to improve and click the \"Improve your Issue\" button." + "\n"),
+                new H4("Step 2: after you used the recommended analyze method, go on to \"Issue List\" and add a new issues you found to the Issue List" + "\n"),
+                new H4("Step 3: while you're on the \"Issue List\", select the \"issue\" you want to improve and click the \"Improve your Issue\" button." + "\n"),
                 new H4("Step 4: add the proposed solution you found using the improved method to the \"improvement backlog\" via \"add solution\"" + "\n"),
                 new H4("""
                         Try to implement your proposed solution and eliminate the "issue". If you have succeeded in doing this, start the process again.
@@ -72,9 +72,9 @@ public class HomeView extends Div {
 
         buttons.add(
                 toAnalysis,
-                toAddIssue,
+                //toAddIssue,
                 toIssueList,
-                toAddSolution,
+                //toAddSolution,
                 toImprovementBacklog
         );
 
