@@ -75,7 +75,7 @@ public class addIssueView extends Div {
 
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
-        issueTyp.setItems("Architecture and Code Structure", "Analyzability & Evaluability", "Technical Infrastructure", "Processes and Organization");
+        issueTyp.setItems("Architecture and Code Structure", "Analyzability & Evaluatability", "Technical Infrastructure", "Processes and Organization");
         issueTyp.setPlaceholder("please select");
         description.setPlaceholder("enter description here...");
 

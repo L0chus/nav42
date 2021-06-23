@@ -36,6 +36,7 @@ public class RecAnalysisView extends VerticalLayout {
         this.analysisControl = analysisControl;
 
         toAddIssue.setThemeName("primary");
+        toAddIssue.setEnabled(false);
 
         toAddIssue.addClickListener(e -> UI.getCurrent().navigate("add-Issue"));
         add(
@@ -67,10 +68,12 @@ public class RecAnalysisView extends VerticalLayout {
         lookingAt.put("new Project", List.of("in development", "requirements", "data", "Infrastructure", "known error", "general", "not sure", "old issues", "stakeholder"));
         lookingAt.put("operated System", List.of("UI", "API", "Datasource", "data", "known error", "production hardware", "Infrastructure", "runtime behavior", "Code Quality", "general", "not sure"));
 
+        //ComboBox 1
         ComboBox<String> box1 = new ComboBox<>("looking at", lookingAt.keySet());
         box1.setPlaceholder("please select");
         box1.setWidth("20%");
 
+        //ComboBox 2
         ComboBox<String> box2 = new ComboBox<>("especially on", Collections.emptyList());
         box2.setPlaceholder("please select");
         box2.setWidth("20%");
@@ -108,6 +111,9 @@ public class RecAnalysisView extends VerticalLayout {
         recAnalysis.addClickListener(event -> {
             analysisList.clear();
             analysisList.addAll(analysisControl.recImprovement(input, input2));
+            
+            // erst nach Erhalt einer Empfehlung kann ein Issue hinzugefügt werden
+            toAddIssue.setEnabled(true);
             dataProvider.refreshAll();
         });
 

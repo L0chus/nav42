@@ -36,6 +36,7 @@ public class RecImproveView extends VerticalLayout implements HasUrlParameter<St
     private final List<RecImproveDTO> improveList = new ArrayList<>();
     private final ListDataProvider<RecImproveDTO> dataProvider = new ListDataProvider<>(improveList);
 
+    private final Button toAddSolution = new Button("add new Solution");
     private ComboBox<String> typSelect;
 
     @Override
@@ -48,7 +49,7 @@ public class RecImproveView extends VerticalLayout implements HasUrlParameter<St
         typSelect.setValue(type);
     }
 
-    public RecImproveView(RecImprove improveControl) { //, String typIssue
+    public RecImproveView(RecImprove improveControl) {
         this.improveControl = improveControl;
         createGridTable();
 
@@ -64,7 +65,7 @@ public class RecImproveView extends VerticalLayout implements HasUrlParameter<St
 
     private Component buttonLayout() {
         HorizontalLayout buttonLayout = new HorizontalLayout();
-        Button toAddSolution = new Button("add new Solution");
+        toAddSolution.setEnabled(false);
         toAddSolution.addClickListener(event -> UI.getCurrent().navigate("add-Solution"));
         toAddSolution.setThemeName("primary");
         buttonLayout.add(toAddSolution);
@@ -153,6 +154,7 @@ public class RecImproveView extends VerticalLayout implements HasUrlParameter<St
         // Empfehlung der Improvement Methode durch DB Abruf mit den 3 Parametern
         recImp.addClickListener(event -> {
             improveList.clear();
+            toAddSolution.setEnabled(true);
             improveList.addAll(improveControl.recImprovement(input1, input2, input3));
             dataProvider.refreshAll();
         });
