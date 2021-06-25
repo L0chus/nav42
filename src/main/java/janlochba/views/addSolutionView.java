@@ -35,12 +35,10 @@ public class addSolutionView extends Div {
 
 
     private final Button tip = new Button("Show Tip");
-
     private final Button save = new Button("add Solution");
     private final Button cancel = new Button("cancel");
 
     private final ManageIssueControl issue;
-
     private final Binder<SolutionDTOImpl> binder = new Binder<>(SolutionDTOImpl.class);
 
     public addSolutionView(ManageSolutionControl control, ManageIssueControl issue) {
@@ -103,9 +101,13 @@ public class addSolutionView extends Div {
     private Component buttonLayout() {
         HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-        tip.addClickListener(event -> {
-            Notification.show("Finding out the cost of an issue usually requires estimation or guessing, so there are uncertainty and probability involved. For example, if a server needs to be rebooted once every 24hrs and an operator needs 30 minutes to perform this reboot (and corresponding activities), then you can approximate the cost of this problem for, let’s say, a month: 5 workdays × 4 weeks × 30 min = 10hrs of operator’s effort.");
-        });
+        tip.addClickListener(event -> Notification.show(
+                "Finding out the cost of an issue usually requires estimation or guessing, " +
+                        "so there are uncertainty and probability involved. " +
+                        "For example, if a server needs to be rebooted once every 24hrs and an operator needs 30 minutes " +
+                        "to perform this reboot (and corresponding activities), then you can approximate the cost of this" +
+                        " problem for, let’s say, a month: 5 workdays × 4 weeks × 30 min = 10hrs of operator’s effort."
+        ));
 
         horizontalLayout.add(
                 save,

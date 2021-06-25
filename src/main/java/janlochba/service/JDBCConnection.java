@@ -17,7 +17,7 @@ public class JDBCConnection {
 
     public static JDBCConnection getInstance() throws DatabaseLayerException {
 
-        if ( connection == null ) {
+        if (connection == null) {
             connection = new JDBCConnection();
         }
         return connection;
