@@ -13,7 +13,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.*;
 import janlochba.dto.RecImproveDTO;
-import janlochba.recommender.RecImprove;
+import janlochba.recommender.RecommendationImprove;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class RecImproveView extends VerticalLayout implements HasUrlParameter<St
     private String input1;
     private String input2;
     private String input3;
-    private final RecImprove improveControl;
+    private final RecommendationImprove improveControl;
 
     private final List<RecImproveDTO> improveList = new ArrayList<>();
     private final ListDataProvider<RecImproveDTO> dataProvider = new ListDataProvider<>(improveList);
@@ -49,7 +49,7 @@ public class RecImproveView extends VerticalLayout implements HasUrlParameter<St
         typSelect.setValue(type);
     }
 
-    public RecImproveView(RecImprove improveControl) {
+    public RecImproveView(RecommendationImprove improveControl) {
         this.improveControl = improveControl;
         createGridTable();
 

@@ -10,12 +10,12 @@ import java.util.List;
 
 @Service
 @Component
-public class RecAnalysis {
+public class RecommendationAnalysis {
 
     @Autowired
     private RecAnalysisRepository repository;
 
-    public List<RecAnalysisDTO> recImprovement(String typ, String extra1) {
+    public List<RecAnalysisDTO> recAnalysis(String typ, String extra1) {
         return repository.findByTypAndExtra1(typ, extra1);
     }
 

@@ -36,7 +36,6 @@ public class addIssueView extends Div {
 
 
     public addIssueView(ManageIssueControl issueControl) {
-
         addClassName("add-Issue-view");
 
         add(
@@ -50,13 +49,11 @@ public class addIssueView extends Div {
         binder.bindInstanceFields(this);
         clearForm();
 
-        binder.forField(issueTyp).asRequired("Issue Typ").bind("typ");
-        binder.forField(name).asRequired("Issue name").bind("name");
-        binder.forField(minValue).asRequired("min Value").bind("minValue");
-        binder.forField(maxValue).asRequired("max Value").bind("maxValue");
-        binder.forField(description).asRequired("Description").bind("description");
-
-        addIssue.addClickListener(click -> validateAndSave());
+        binder.forField(issueTyp).asRequired().bind("typ");
+        binder.forField(name).asRequired().bind("name");
+        binder.forField(minValue).asRequired().bind("minValue");
+        binder.forField(maxValue).asRequired().bind("maxValue");
+        binder.forField(description).asRequired().bind("description");
 
         addIssue.addClickListener(e -> {
             issueControl.createIssue(binder.getBean());
@@ -64,13 +61,6 @@ public class addIssueView extends Div {
             clearForm();
             UI.getCurrent().navigate("Issue_List");
         });
-
-    }
-
-    private void validateAndSave() {
-        if (binder.isValid()) {
-            binder.getBean();
-        }
     }
 
     private Component createFormLayout() {
@@ -100,7 +90,6 @@ public class addIssueView extends Div {
         addIssue.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         binder.addStatusChangeListener(event -> addIssue.setEnabled(binder.isValid()));
-        addIssue.setEnabled(false);
 
         cancel.addClickListener(e -> clearForm());
 

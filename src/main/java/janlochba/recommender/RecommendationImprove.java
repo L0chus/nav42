@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Component
-public class RecImprove {
+public class RecommendationImprove {
 
     @Autowired
     private RecImproveRepository repository;

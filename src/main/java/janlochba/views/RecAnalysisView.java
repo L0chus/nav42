@@ -13,7 +13,7 @@ import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import janlochba.dto.RecAnalysisDTO;
-import janlochba.recommender.RecAnalysis;
+import janlochba.recommender.RecommendationAnalysis;
 
 import java.util.*;
 
@@ -24,15 +24,13 @@ public class RecAnalysisView extends VerticalLayout {
 
     private String input;
     private String input2;
-    private final RecAnalysis analysisControl;
-
+    private final RecommendationAnalysis analysisControl;
     private final Button toAddIssue = new Button("add new Issue");
-
     private final List<RecAnalysisDTO> analysisList = new ArrayList<>();
     private final ListDataProvider<RecAnalysisDTO> dataProvider = new ListDataProvider<>(analysisList);
 
 
-    public RecAnalysisView(RecAnalysis analysisControl) {
+    public RecAnalysisView(RecommendationAnalysis analysisControl) {
         this.analysisControl = analysisControl;
 
         toAddIssue.setThemeName("primary");
@@ -45,7 +43,6 @@ public class RecAnalysisView extends VerticalLayout {
                 createGridTable(),
                 toAddIssue
         );
-
     }
 
     private Component createGridTable() {
@@ -57,16 +54,20 @@ public class RecAnalysisView extends VerticalLayout {
 
         analysisGrid.setWidth("75%");
 
-
         return analysisGrid;
     }
 
     private Component buildForm() {
-
+        // new API
         Map<String, List<String>> lookingAt = new HashMap<>();
-        lookingAt.put("new API", List.of("in development", "requirements", "data", "Infrastructure", "known error", "general", "not sure", "old issues"));
-        lookingAt.put("new Project", List.of("in development", "requirements", "data", "Infrastructure", "known error", "general", "not sure", "old issues", "stakeholder"));
-        lookingAt.put("operated System", List.of("UI", "API", "Datasource", "data", "known error", "production hardware", "Infrastructure", "runtime behavior", "Code Quality", "general", "not sure"));
+        lookingAt.put("new API", List.of("in development", "requirements", "data",
+                "Infrastructure", "known error", "general", "not sure", "old issues"));
+        // new Project
+        lookingAt.put("new Project", List.of("in development", "requirements", "data",
+                "Infrastructure", "known error", "general", "not sure", "old issues", "stakeholder"));
+        // operated System
+        lookingAt.put("operated System", List.of("UI", "API", "Datasource", "data", "known error", "production hardware",
+                "Infrastructure", "runtime behavior", "Code Quality", "general", "not sure"));
 
         //ComboBox 1
         ComboBox<String> box1 = new ComboBox<>("looking at", lookingAt.keySet());
@@ -83,8 +84,9 @@ public class RecAnalysisView extends VerticalLayout {
 
         recAnalysis.setThemeName("primary");
         recAnalysis.setEnabled(false);
-
         box2.setEnabled(false);
+
+
         box1.addValueChangeListener(e -> {
             String type = e.getValue(); // Übergibt den String für die Methodenausgabe
             input = e.getValue();
@@ -95,6 +97,7 @@ public class RecAnalysisView extends VerticalLayout {
                 box2.setItems(lookingAt.get(type)); // die werte von der Liste in Looking at übergeben
             }
         });
+
         box2.addValueChangeListener(e -> {
             String typBox2 = e.getValue();
             input2 = e.getValue();
@@ -110,9 +113,8 @@ public class RecAnalysisView extends VerticalLayout {
         // Empfehlung der Analyse Methode durch DB Abruf mit den 2 Parametern
         recAnalysis.addClickListener(event -> {
             analysisList.clear();
-            analysisList.addAll(analysisControl.recImprovement(input, input2));
-            
-            // erst nach Erhalt einer Empfehlung kann ein Issue hinzugefügt werden
+            analysisList.addAll(analysisControl.recAnalysis(input, input2));
+
             toAddIssue.setEnabled(true);
             dataProvider.refreshAll();
         });
