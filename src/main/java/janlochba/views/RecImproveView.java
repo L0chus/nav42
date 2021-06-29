@@ -26,8 +26,6 @@ import static java.util.Collections.emptyList;
 @PageTitle("Improve")
 public class RecImproveView extends VerticalLayout implements HasUrlParameter<String> {
 
-    private List<RecImproveDTO> recImproveMethod;
-
     private String input1;
     private String input2;
     private String input3;

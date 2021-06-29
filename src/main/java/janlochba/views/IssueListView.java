@@ -42,7 +42,7 @@ public class IssueListView extends Div {
 
         delete.addClickListener(event -> {
             Optional<IssueDTO> firstAsOptional = grid.getSelectedItems().stream().findFirst();
-            // prüft ob ein Listenelement ausgewählt ist (isPresent (Methode aus Optional))
+            // prüft ob ein Listenelement ausgewählt ist
             if (firstAsOptional.isPresent()) {
                 // Falls ja wird das gewählte Eintrag gelöscht
                 issueControl.delete(firstAsOptional.get().getId());
@@ -50,7 +50,7 @@ public class IssueListView extends Div {
             }
             // Falls nein, passiert nichts beim drücken des Delete Buttons
         });
-        
+
 
     }
 
