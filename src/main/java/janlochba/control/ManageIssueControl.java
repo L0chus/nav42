@@ -20,7 +20,6 @@ public class ManageIssueControl {
     public void createIssue(IssueDTO issueDTO) {
 
         Issue issueEntity = IssueFactory.createIssue(issueDTO);
-
         this.repository.save(issueEntity);
     }
 

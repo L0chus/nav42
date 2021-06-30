@@ -33,7 +33,6 @@ public class addSolutionView extends Div {
     private final NumberField maxCost = new NumberField("max Cost");
     private final MultiselectComboBox<IssueDTO> issueListMultiselectComboBox = new MultiselectComboBox<>();
 
-
     private final Button tip = new Button("Show Tip");
     private final Button save = new Button("add Solution");
     private final Button cancel = new Button("cancel");
@@ -87,8 +86,8 @@ public class addSolutionView extends Div {
                 name,
                 description,
                 minCost,
-                maxCost,
-                issueListMultiselectComboBox
+                issueListMultiselectComboBox,
+                maxCost
         );
 
         return formLayout;
