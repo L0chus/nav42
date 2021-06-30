@@ -143,10 +143,6 @@ public class RecImproveView extends VerticalLayout implements HasUrlParameter<St
             input3 = e.getValue();
             boolean enableButton = typ3 != null && !typ3.isEmpty();
             recImp.setEnabled(enableButton);
-            recImp.addClickListener(event -> {
-
-            });
-
         });
 
         // Empfehlung der Improvement Methode durch DB Abruf mit den 3 Parametern
