@@ -16,9 +16,10 @@ public interface SolutionDTO {
 
     public List<IssueDTO> getIssues();
 
+    // hierdurch werden die der Solution zugehörigen Issues hintereinander mit , getrennt angezeigt
+
     public default String getIssuesAsString() {
         List<IssueDTO> issues = getIssues();
-        // hierdurch werden die der Solution zugehörigen Issues hintereinander mit , getrennt angezeigt
         return String.join(", ", issues.stream().map(IssueDTO::getName).toList());
     }
 }

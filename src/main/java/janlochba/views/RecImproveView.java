@@ -100,7 +100,7 @@ public class RecImproveView extends VerticalLayout implements HasUrlParameter<St
 
         typSelect = new ComboBox<>("Issue Typ", typOfIssue.keySet());
         ComboBox<String> boxSelect = new ComboBox<>("Category", emptyList());
-        ComboBox<String> box2Select = new ComboBox<>("", emptyList());
+        ComboBox<String> box2Select = new ComboBox<>("refinement", emptyList());
 
         typSelect.setWidth("20%");
         boxSelect.setWidth("20%");
